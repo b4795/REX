@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="System" nsURI="System" nsPrefix="System">
+  <eClassifiers xsi:type="ecore:EClass" name="_ops">
+    <eOperations name="print_hello_world"/>
+    <eOperations name="launch_application">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="SystemFactoryImpl factory = new SystemFactoryImpl();&#xA;print_hello_world();&#xA;"/>
+      </eAnnotations>
+    </eOperations>
+  </eClassifiers>
+</ecore:EPackage>

@@ -1,0 +1,514 @@
+
+rule Model2Package 
+	transform s : MyDsl!Model
+	to t : Ecore!EPackage {
+	
+	t.name = "System";
+	t.nsPrefix = "System";
+	t.nsURI = "System";
+
+	t.eClassifiers.addAll(MyDsl!ExistenceStmt.all.equivalent());
+
+	var ops = new Ecore!EClass;
+	ops.name = "_ops";
+	t.eClassifiers.add(ops);
+	ops.eOperations.addAll(MyDsl!OperationDeclarationStmt.all.equivalent());
+	ops.eOperations.addAll(MyDsl!OperationDefinitionStmt.all.equivalent());
+}
+
+@greedy
+rule ExistenceStmt2Class
+	transform s : MyDsl!ExistenceStmt
+	to t : Ecore!EClass {
+	
+	if (s.getName() == "boolean") {
+		var attr = new Ecore!EAttribute;
+		attr.name = "value";
+		attr.eType = EcoreIn!EDataType.all.selectOne(it | it.name = "EBoolean");
+		
+		t.name = "_boolean";
+		t.eStructuralFeatures.add(attr);
+	}
+	else if (s.getName() == "integer") {
+		var attr = new Ecore!EAttribute;
+		attr.name = "value";
+		attr.eType = EcoreIn!EDataType.all.selectOne(it | it.name = "EInt");
+		
+		t.name = "_integer";
+		t.eStructuralFeatures.add(attr);
+	}
+	else if (s.getName() == "string") {
+		var attr = new Ecore!EAttribute;
+		attr.name = "value";
+		attr.eType = EcoreIn!EDataType.all.selectOne(it | it.name = "EString");
+		
+		t.name = "_string";
+		t.eStructuralFeatures.add(attr);
+	}
+	else {
+		t.name = s.getName();
+	}
+	
+	for (st in getSuperTypes(s.getName())) {
+		t.eSuperTypes.add(st.equivalent());
+	}
+	
+	for (c in getChildren(s.getName())) {
+		var reference = new Ecore!EReference;
+		reference.name = c.getName();
+		reference.eType = c.eContainer.equivalent();
+		
+		if (c.isTypeOf(MyDsl!ExistenceSingularIndefinitePhrase)) {
+			reference.lowerBound = 1;
+			reference.upperBound = 1;
+		}
+		else if (c.isTypeOf(MyDsl!ExistencePluralIndefinitePhrase)) {
+			reference.lowerBound = 0;
+			reference.upperBound = -1;
+		}
+		
+		t.eStructuralFeatures.add(reference);
+	}
+}
+
+operation getSuperTypes (subClassName : String) : Any {
+	var seq = Sequence{};
+	for (stmt in MyDsl!InheritanceStmt.all) {
+		for (e in stmt.class.elements) {
+			if (e.ref.name == subClassName) {
+				seq.addAll(
+					stmt.superclass.elements.collect(it | it.ref.eContainer)
+				);
+			}
+		}
+	}
+	return seq;
+}
+
+operation getAllSuperTypes (subClassName : String) : Any {
+	var seq = Sequence{};
+	for (s in getSuperTypes(subClassName)) {
+		seq.add(s.getType());
+		seq.addAll(getAllSuperTypes(s.getName()));
+	}
+	return seq;
+}
+
+operation getChildren (parentClassName) : Any {
+	var seq = Sequence{};
+	for (stmt in MyDsl!CompositionStmt.all) {
+		for (e in stmt.parent.elements) {
+			if (e.ref.name == parentClassName) {
+				seq.addAll(
+					stmt.children.elements.collect(it | it.ref)
+				);
+			}
+		}
+	}
+	return seq;
+}
+
+@greedy
+rule OperationDeclarationStmt2Operation 
+	transform s : MyDsl!OperationDeclarationStmt
+	to t : Ecore!EOperation {
+	
+	t.name = s.getName();
+	t.eParameters.addAll(
+		s.parameters.select(it | it.isObject()).equivalent());
+	
+	var bodyStmts = s.getDefinitionBodyStmts();
+	if (bodyStmts != null) {
+		t.eAnnotations.add(
+			OperationDefinitionBodyStmts2GenModelAnnotation(bodyStmts));
+	}
+}
+
+@greedy
+rule OperationParameterVariableDeclarationPhrase2Parameter 
+	transform s : MyDsl!OperationParameterVariableDeclarationPhrase
+	to t : Ecore!EParameter {
+	
+	t.name = s.name;
+	t.eType = s.type.ref.eContainer.equivalent();
+	
+	if (s.type.ref.isTypeOf(MyDsl!ExistenceSingularIndefinitePhrase)) {
+		t.lowerBound = 1;
+		t.upperBound = 1;
+	}
+	else if (s.type.ref.isTypeOf(MyDsl!ExistencePluralIndefinitePhrase)) {
+		t.lowerBound = 0;
+		t.upperBound = -1;
+	}
+}
+
+operation MyDsl!OperationDeclarationStmt getDefinitionBodyStmts () : Any {
+	for (stmt in MyDsl!OperationDefinitionStmt.all) {
+		if (stmt.header == self) {
+			return stmt.body;
+		}
+	}
+	return null;
+}
+
+operation OperationDefinitionBodyStmts2GenModelAnnotation (bodyStmts : Any) : Ecore!EAnnotation {
+	var annotation = new Ecore!EAnnotation;
+	annotation.source = "http://www.eclipse.org/emf/2002/GenModel";
+	
+	var entry = new Ecore!EStringToStringMapEntry;
+	entry.key = "body";
+	
+	var code = bodyStmts.toCode();
+	entry.value += "SystemFactoryImpl factory = new SystemFactoryImpl();\n";
+	entry.value += code.at(0);
+	entry.value += code.at(1);
+	
+	annotation.details.add(entry);
+	return annotation;
+}
+
+operation MyDsl!OperationDefinitionBodyStmts toCode () : Sequence<String> {
+	var preCode = new Sequence<String>;
+	var inCode = new Sequence<String>;
+	for (stmt in self.stmts) {
+		var code = stmt.toCode();
+		preCode.add(code.at(0));
+		inCode.add(code.at(1));
+	}
+	return Sequence{
+		preCode.concat(),
+		inCode.concat(";\n") + ";\n"
+	};
+}
+
+operation MyDsl!OperationDefinitionBodyConditionalStmt toCode () : Sequence<String> {
+	var conditionCode = self.condition.toConditionCode();
+	var thenCode = self.thenBody.toCode();
+	
+	var code = "";
+	code += conditionCode.at(0);
+	code += "if (" + conditionCode.at(1) + ") {\n";
+	code += thenCode.at(0);
+	code += thenCode.at(1);
+	code += "}\n";
+	
+	if (self.elseBody != null) {
+		var elseCode = self.elseBody.toCode();
+		
+		code += "else {\n";
+		code += elseCode.at(0);
+		code += elseCode.at(1);
+		code += "}\n";
+	}
+	
+	return Sequence{
+		"",
+		code
+	};
+}
+
+operation MyDsl!OperationDefinitionBodyFunctionCallPhrase toCode () : Sequence<String> {
+	var header = self.getDeclarationStmt();
+	if (header == null) {
+		("error: cannot find a declaration or definition compatible with " + self.getName()).println();
+		return Sequence{"", ""};	
+	}
+	
+	var parameters = header.parameters.select(it | it.isObject());
+	var arguments = self.arguments.select(it | it.isObject());
+	return functionCallParameterAndArgumentToCode(header, parameters, arguments);
+}
+
+operation MyDsl!OperationDefinitionBodyFunctionCallPhrase toConditionCode () : Sequence<String> {
+	var arguments = self.arguments;
+	var connectionPhrase : MyDsl!OperationDefinitionBodyFunctionCallArgumentsPhrase;
+	connectionPhrase = new MyDsl!OperationParameterConnectionBuiltinRefPhrase;
+	connectionPhrase.name = 'is';
+	arguments.add(connectionPhrase);
+	var functionCallInRefsRef : MyDsl!OperationDefinitionBodyFunctionCallInRefsRefPhrase;
+	functionCallInRefsRef = new MyDsl!OperationDefinitionBodyFunctionCallInRefsRefPhrase;
+	functionCallInRefsRef.ref = new MyDsl!OperationParameterVariableDeclarationPhrase;
+	functionCallInRefsRef.ref.name = "_local_boolean" + 0.`to`(1000000).random().asString();
+	functionCallInRefsRef.ref.type = new MyDsl!ExistenceSingularIndefiniteRefPhrase;
+	functionCallInRefsRef.ref.type.ref = MyDsl!ExistenceSingularIndefinitePhrase.all.selectOne(it | it.name = "boolean");
+	arguments.add(functionCallInRefsRef);
+	
+	var header = getDeclarationStmtFromArguments(arguments);
+	if (header == null) {
+		("error: cannot find a declaration or definition compatible with " + self.getName()).println();
+		return Sequence{"", ""};
+	}
+	
+	var parameters = header.parameters.select(it | it.isObject());
+	var arguments = self.arguments.select(it | it.isObject());
+	var code = functionCallParameterAndArgumentToCode(header, parameters, arguments);
+	
+	var preCode : String;
+	var inCode : String;
+	
+	preCode += "_boolean " + functionCallInRefsRef.ref.name + " = factory.create_boolean" + "();\n";
+	preCode += code.at(0);
+	preCode += code.at(1) + ";\n";
+	
+	inCode = functionCallInRefsRef.ref.name + ".isValue()";
+	return Sequence{preCode, inCode};
+}
+
+operation functionCallParameterAndArgumentToCode (header, parameters, arguments) : Sequence<String> {
+	var code = new Sequence;
+	if (parameters.size() >= 1) {
+		for (i in 0.`to`(parameters.size - 1)) {
+			var a = arguments.at(i);
+			var p = parameters.at(i);
+			
+			code.add(a.toCode(p.getType()));
+		}
+	}
+	
+	var preCode = code.collect(it | it.at(0));
+	var inCode = code.collect(it | it.at(1));
+	return Sequence{
+		preCode.concat(),
+		header.getName() + "(" + inCode.concat(", ") + ")"
+	};
+}
+
+operation MyDsl!OperationDefinitionBodyVariableDeclarationPhrase toCode () : Sequence<String> {
+	return Sequence{
+		"",
+		self.type.getType() + " " + self.name + " = factory.create" + self.type.getType() + "()"
+	};
+}
+
+operation MyDsl!InstanceRefPhrase toCode (type : String) : Sequence<String> {
+	var preCode : String;
+	var inCode : String;
+	
+	if (self.f != null and self.class == null) {
+		return self.f.toCode(type);
+	}
+	if (self.class != null and self.f == null) {
+		inCode = self.class.getName() + ".getInstance()";
+	}
+	if (self.class != null and self.f != null) {
+		if (self.f.isTypeOf(MyDsl!InstanceDirectRefPhrase)) {
+			var code = self.f.toCode(type);
+			preCode = code.at(0);
+			inCode = "new " + self.class.getType() + "(" + code.at(1) + ")";
+		}
+		if (self.f.isTypeOf(MyDsl!InstanceIndirectRefPhrase)) {
+			var code = self.f.parent.toCode(type);
+			preCode = code.at(0);
+			inCode = code.at(1) + ".get" + self.class.name.firstToUpperCase() + "()";
+		}
+	}
+	return Sequence{preCode, inCode};
+}
+
+operation MyDsl!InstanceRefPhrase getType () : String {
+	if (self.f != null and self.class == null) {
+		return self.f.getType();
+	}
+	if (self.class != null and self.f == null) {
+		return self.class.getType();
+	}
+	if (self.class != null and self.f != null) {
+		return self.class.getType();
+	}
+	return null;
+}
+
+operation MyDsl!InstanceDirectRefPhrase toCode (type : String) : Sequence<String> {
+	var preCode : String;
+	var inCode : String;
+	var localName = "_local_" + type + 0.`to`(1000000).random().asString();
+	
+	preCode += type + " " + localName + " = factory.create" + type + "();\n";
+	preCode += localName + ".setValue(" + self.value.toCode(type).at(1) + ");\n";
+	
+	inCode = localName;
+	return Sequence{preCode, inCode};
+}
+
+operation MyDsl!InstanceDirectRefPhrase getType () : String {
+	if (self.value.isKindOf(MyDsl!InstanceBuiltinValueIntegerPhrase)) {
+		return "_integer";
+	}
+	else if (self.value.isKindOf(MyDsl!InstanceBuiltinValueStringPhrase)) {
+		return "_string";
+	}
+}
+
+operation MyDsl!InstanceBuiltinValueIntegerPhrase toCode (type : String) : Sequence<String> {
+	var preCode : String;
+	var inCode : String;
+	
+	inCode =  self.v.asString();
+	return Sequence{preCode, inCode};
+}
+
+operation MyDsl!InstanceBuiltinValueStringPhrase toCode (type : String) : Sequence<String> {
+	var preCode : String;
+	var inCode : String;
+	inCode = "\"" + self.v + "\"";
+	return Sequence{preCode, inCode};
+}
+
+operation MyDsl!OperationDefinitionBodyFunctionCallArgumentsPhrase isObject () : Boolean {
+	return (
+		self.isTypeOf(MyDsl!OperationDefinitionBodyFunctionCallInRefsRefPhrase)
+		and self.ref.isKindOf(MyDsl!OperationDefinitionBodyFunctionCallInRefsObjectsPhrase)
+	)
+	or self.isTypeOf(MyDsl!InstanceRefPhrase);
+}
+
+operation MyDsl!OperationDefinitionBodyFunctionCallInRefsRefPhrase getType () : String {
+	return self.ref.getType();
+}
+
+operation MyDsl!OperationDefinitionBodyFunctionCallInRefsRefPhrase toCode (type : String) : Sequence<String> {
+	var preCode : String;
+	var inCode : String;
+	inCode = self.ref.toCode(type).at(1);
+	return Sequence{preCode, inCode};
+}
+
+operation MyDsl!OperationDefinitionBodyVariableDeclarationPhrase getType () : String {
+	return self.type.getType();
+}
+
+operation MyDsl!OperationDefinitionBodyVariableDeclarationPhrase toCode (type : String) : Sequence<String> {
+	var preCode : String;
+	var inCode : String;
+	inCode = self.name;
+	return Sequence{preCode, inCode};
+}
+
+operation MyDsl!OperationParameterPhrase isObject () : Boolean {
+	return self.isTypeOf(MyDsl!OperationParameterVariableDeclarationPhrase);
+}
+
+operation MyDsl!OperationParameterVariableDeclarationPhrase getType () : String {
+	return self.type.ref.getType();
+}
+
+operation MyDsl!OperationParameterVariableDeclarationPhrase toCode (type : String) : Sequence<String> {
+	var preCode : String;
+	var inCode : String;
+	inCode = self.name;
+	return Sequence{preCode, inCode};
+}
+
+operation MyDsl!OperationParameterConnectionPhrase getType () : String {
+	return self.name;
+}
+
+operation MyDsl!OperationParameterConnectionBuiltinRefPhrase getType () : String {
+	return self.name;
+}
+
+operation MyDsl!ExistenceSingularIndefinitePhrase getType () : String {
+	if (self.name == "boolean"
+		or self.name == "integer"
+		or self.name == "string"
+	) {
+		return "_" + self.name;
+	}
+	else {
+		return self.name;
+	}
+}
+
+operation MyDsl!ExistencePluralIndefinitePhrase getType () : String {
+	return self.eContainer.getType();
+}
+
+operation MyDsl!ExistenceIndefiniteStmt getType () : String {
+	return self.singular.getType();
+}
+
+operation MyDsl!OperationDeclarationStmt getName () : String {
+	var name : String;
+	name += self.parameters.at(0).getType();
+	if (self.parameters.size() >= 2) {
+		for (i in 1.`to`(self.parameters.size() - 1)) {
+			name += "_";
+			name += self.parameters.at(i).getType();
+		}
+	}
+	return name;
+}
+
+operation MyDsl!OperationDefinitionBodyFunctionCallPhrase getName () : String {
+	var name : String;
+	name += self.arguments.at(0).getType();
+	for (i in 1.`to`(self.arguments.size() - 1)) {
+		name += "_";
+		name += self.arguments.at(i).getType();
+	}
+	return name;
+}
+
+operation MyDsl!OperationDefinitionBodyFunctionCallPhrase
+	getDeclarationStmt () : MyDsl!OperationDeclarationStmt
+{
+	return getDeclarationStmtFromArguments(self.arguments);
+}
+
+operation getDeclarationStmtFromArguments (arguments) : MyDsl!OperationDeclarationStmt
+{
+	//''.println();
+	//for (a in arguments) { (a.getType() + "_").print(); } ''.println();
+	
+	for (stmt in MyDsl!OperationDeclarationStmt.all) {
+		//for (a in stmt.parameters) { (a.getType() + "_").print(); } ''.println();
+		var m = doBodyDefinitionAndDeclarationMatch(
+			arguments, stmt.parameters);
+		if (m) {
+			//"match".println();
+			return stmt;
+		}
+	}
+	return null;
+}
+
+operation doBodyDefinitionAndDeclarationMatch (
+	bodyDefinitionCon : Any,
+	declarationCon : Any
+) : Boolean {
+	if (declarationCon.size == 0 and declarationCon.size == bodyDefinitionCon.size) {
+		return true;
+	}
+	else if (declarationCon.size > 0 and declarationCon.size == bodyDefinitionCon.size) {
+		var match = true;
+		for (i in 0.`to`(declarationCon.size - 1)) {
+			var required_type = declarationCon.at(i).getType();
+			var provided_type = bodyDefinitionCon.at(i).getType();
+			var compatible_types : Sequence<String>;
+			compatible_types.add(provided_type);
+			compatible_types.addAll(getAllSuperTypes(provided_type));
+			//("provided: " + provided_type).println();
+			//("required: " + required_type).println();
+			//compatible_types.println();
+			if (compatible_types.includes(required_type)) {
+				match = true;
+			}
+			else {
+				match = false;
+				break;
+			}
+		}
+		if (match) {
+			return true;
+		}
+	}
+	return false;
+}
+
+operation MyDsl!ExistenceDefiniteStmt getName () : String {
+	return self.definite.name;
+}
+
+operation MyDsl!ExistenceIndefiniteStmt getName () : String {
+	return self.singular.name;
+}

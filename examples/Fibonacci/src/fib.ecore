@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="System" nsURI="System" nsPrefix="System">
+  <eClassifiers xsi:type="ecore:EClass" name="_boolean">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="_integer">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EInt"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="_ops">
+    <eOperations name="_integer_is__integer">
+      <eParameters name="X" lowerBound="1" eType="#//_integer"/>
+      <eParameters name="Y" lowerBound="1" eType="#//_integer"/>
+    </eOperations>
+    <eOperations name="_integer_is_greater_than_or_equal_to__integer_is__boolean">
+      <eParameters name="X" lowerBound="1" eType="#//_integer"/>
+      <eParameters name="Y" lowerBound="1" eType="#//_integer"/>
+      <eParameters name="B" lowerBound="1" eType="#//_boolean"/>
+    </eOperations>
+    <eOperations name="the_addition_of__integer_with__integer_is__integer">
+      <eParameters name="A" lowerBound="1" eType="#//_integer"/>
+      <eParameters name="B" lowerBound="1" eType="#//_integer"/>
+      <eParameters name="X" lowerBound="1" eType="#//_integer"/>
+    </eOperations>
+    <eOperations name="the_difference_between__integer_and__integer_is__integer">
+      <eParameters name="A" lowerBound="1" eType="#//_integer"/>
+      <eParameters name="B" lowerBound="1" eType="#//_integer"/>
+      <eParameters name="X" lowerBound="1" eType="#//_integer"/>
+    </eOperations>
+    <eOperations name="output__integer">
+      <eParameters name="X" lowerBound="1" eType="#//_integer"/>
+    </eOperations>
+    <eOperations name="the_fibonacci_function_of__integer_is__integer">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="SystemFactoryImpl factory = new SystemFactoryImpl();&#xA;_boolean _local_boolean376519 = factory.create_boolean();&#xA;_integer _local__integer335459 = factory.create_integer();&#xA;_local__integer335459.setValue(3);&#xA;_integer_is_greater_than_or_equal_to__integer_is__boolean(X, _local__integer335459, _local_boolean376519);&#xA;if (_local_boolean376519.isValue()) {&#xA;_integer _local__integer753491 = factory.create_integer();&#xA;_local__integer753491.setValue(1);&#xA;_integer _local__integer580635 = factory.create_integer();&#xA;_local__integer580635.setValue(2);&#xA;_integer N1 = factory.create_integer();&#xA;_integer N2 = factory.create_integer();&#xA;the_difference_between__integer_and__integer_is__integer(X, _local__integer753491, N1);&#xA;the_difference_between__integer_and__integer_is__integer(X, _local__integer580635, N2);&#xA;_integer A = factory.create_integer();&#xA;_integer B = factory.create_integer();&#xA;the_fibonacci_function_of__integer_is__integer(N1, A);&#xA;the_fibonacci_function_of__integer_is__integer(N2, B);&#xA;the_addition_of__integer_with__integer_is__integer(A, B, Y);&#xA;}&#xA;else {&#xA;_integer _local__integer598284 = factory.create_integer();&#xA;_local__integer598284.setValue(1);&#xA;_integer_is__integer(Y, _local__integer598284);&#xA;}&#xA;;&#xA;"/>
+      </eAnnotations>
+      <eParameters name="X" lowerBound="1" eType="#//_integer"/>
+      <eParameters name="Y" lowerBound="1" eType="#//_integer"/>
+    </eOperations>
+    <eOperations name="launch_application">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="SystemFactoryImpl factory = new SystemFactoryImpl();&#xA;_integer _local__integer656406 = factory.create_integer();&#xA;_local__integer656406.setValue(1);&#xA;_integer _local__integer832482 = factory.create_integer();&#xA;_local__integer832482.setValue(2);&#xA;_integer _local__integer688607 = factory.create_integer();&#xA;_local__integer688607.setValue(10);&#xA;_integer A = factory.create_integer();&#xA;_integer B = factory.create_integer();&#xA;_integer C = factory.create_integer();&#xA;the_fibonacci_function_of__integer_is__integer(_local__integer656406, A);&#xA;the_fibonacci_function_of__integer_is__integer(_local__integer832482, B);&#xA;the_fibonacci_function_of__integer_is__integer(_local__integer688607, C);&#xA;output__integer(A);&#xA;output__integer(B);&#xA;output__integer(C);&#xA;"/>
+      </eAnnotations>
+    </eOperations>
+  </eClassifiers>
+</ecore:EPackage>

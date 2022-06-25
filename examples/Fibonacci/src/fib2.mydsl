@@ -1,0 +1,39 @@
+there_are booleans (boolean).
+there_are integers (integer).
+
+it_is_possible_that an integer X is an integer Y.
+it_is_possible_that an integer X is_greater_than_or_equal_to an integer Y is a boolean B.
+it_is_possible_that an integer X is_less_than_or_equal_to an integer Y is a boolean B.
+
+it_is_possible the_addition_of an integer A with an integer B is an integer X.
+it_is_possible the_difference_between an integer A and an integer B is an integer X.
+
+it_is_possible_to output an integer X.
+
+if the_fibonacci_function_of an integer X is an integer Y, then
+	if X is_greater_than_or_equal_to 3, then
+		there_is_one integer N1,
+		there_is_one integer N2,
+		the_difference_between X and 1 is N1,
+		the_difference_between X and 2 is N2,
+		there_is_one integer A,
+		there_is_one integer B,
+		the_fibonacci_function_of N1 is A,
+		the_fibonacci_function_of N2 is B,
+		the_addition_of A with B is Y;
+	else
+		Y is 1.
+
+if output_the_result_of_the_fibonacci_function_from an integer A to an integer B, then
+	if A is_less_than_or_equal_to B, then
+		there_is_one integer I,
+		the_fibonacci_function_of A is I,
+		output I,
+		the_addition_of A with 1 is A,
+		output_the_result_of_the_fibonacci_function_from A to B.
+
+if output_the_result_of_the_fibonacci_function_up_to an integer N, then
+	output_the_result_of_the_fibonacci_function_from 1 to N.
+
+if launch_application, then
+	output_the_result_of_the_fibonacci_function_up_to 10.

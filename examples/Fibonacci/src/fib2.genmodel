@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/Fibonacci/src" modelPluginID="Fibonacci" modelName="Fib2"
+    rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container" importerID="org.eclipse.emf.importer.ecore"
+    complianceLevel="5.0" copyrightFields="false" usedGenPackages="../../org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore"
+    operationReflection="true" importOrganizing="true">
+  <foreignModel>fib2.ecore</foreignModel>
+  <genPackages prefix="System" basePackage="Fib2" disposableProviderFactory="true"
+      ecorePackage="fib2.ecore#/">
+    <genClasses ecoreClass="fib2.ecore#//_boolean">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute fib2.ecore#//_boolean/value"/>
+    </genClasses>
+    <genClasses ecoreClass="fib2.ecore#//_integer">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute fib2.ecore#//_integer/value"/>
+    </genClasses>
+    <genClasses ecoreClass="fib2.ecore#//_ops">
+      <genOperations ecoreOperation="fib2.ecore#//_ops/_integer_is__integer">
+        <genParameters ecoreParameter="fib2.ecore#//_ops/_integer_is__integer/X"/>
+        <genParameters ecoreParameter="fib2.ecore#//_ops/_integer_is__integer/Y"/>
+      </genOperations>
+      <genOperations ecoreOperation="fib2.ecore#//_ops/_integer_is_greater_than_or_equal_to__integer_is__boolean">
+        <genParameters ecoreParameter="fib2.ecore#//_ops/_integer_is_greater_than_or_equal_to__integer_is__boolean/X"/>
+        <genParameters ecoreParameter="fib2.ecore#//_ops/_integer_is_greater_than_or_equal_to__integer_is__boolean/Y"/>
+        <genParameters ecoreParameter="fib2.ecore#//_ops/_integer_is_greater_than_or_equal_to__integer_is__boolean/B"/>
+      </genOperations>
+      <genOperations ecoreOperation="fib2.ecore#//_ops/_integer_is_less_than_or_equal_to__integer_is__boolean">
+        <genParameters ecoreParameter="fib2.ecore#//_ops/_integer_is_less_than_or_equal_to__integer_is__boolean/X"/>
+        <genParameters ecoreParameter="fib2.ecore#//_ops/_integer_is_less_than_or_equal_to__integer_is__boolean/Y"/>
+        <genParameters ecoreParameter="fib2.ecore#//_ops/_integer_is_less_than_or_equal_to__integer_is__boolean/B"/>
+      </genOperations>
+      <genOperations ecoreOperation="fib2.ecore#//_ops/the_addition_of__integer_with__integer_is__integer">
+        <genParameters ecoreParameter="fib2.ecore#//_ops/the_addition_of__integer_with__integer_is__integer/A"/>
+        <genParameters ecoreParameter="fib2.ecore#//_ops/the_addition_of__integer_with__integer_is__integer/B"/>
+        <genParameters ecoreParameter="fib2.ecore#//_ops/the_addition_of__integer_with__integer_is__integer/X"/>
+      </genOperations>
+      <genOperations ecoreOperation="fib2.ecore#//_ops/the_difference_between__integer_and__integer_is__integer">
+        <genParameters ecoreParameter="fib2.ecore#//_ops/the_difference_between__integer_and__integer_is__integer/A"/>
+        <genParameters ecoreParameter="fib2.ecore#//_ops/the_difference_between__integer_and__integer_is__integer/B"/>
+        <genParameters ecoreParameter="fib2.ecore#//_ops/the_difference_between__integer_and__integer_is__integer/X"/>
+      </genOperations>
+      <genOperations ecoreOperation="fib2.ecore#//_ops/output__integer">
+        <genParameters ecoreParameter="fib2.ecore#//_ops/output__integer/X"/>
+      </genOperations>
+      <genOperations ecoreOperation="fib2.ecore#//_ops/the_fibonacci_function_of__integer_is__integer"
+          body="SystemFactoryImpl factory = new SystemFactoryImpl();&#xA;_boolean _local_boolean121983 = factory.create_boolean();&#xA;_integer _local__integer896090 = factory.create_integer();&#xA;_local__integer896090.setValue(3);&#xA;_integer_is_greater_than_or_equal_to__integer_is__boolean(X, _local__integer896090, _local_boolean121983);&#xA;if (_local_boolean121983.isValue()) {&#xA;_integer _local__integer94833 = factory.create_integer();&#xA;_local__integer94833.setValue(1);&#xA;_integer _local__integer888238 = factory.create_integer();&#xA;_local__integer888238.setValue(2);&#xA;_integer N1 = factory.create_integer();&#xA;_integer N2 = factory.create_integer();&#xA;the_difference_between__integer_and__integer_is__integer(X, _local__integer94833, N1);&#xA;the_difference_between__integer_and__integer_is__integer(X, _local__integer888238, N2);&#xA;_integer A = factory.create_integer();&#xA;_integer B = factory.create_integer();&#xA;the_fibonacci_function_of__integer_is__integer(N1, A);&#xA;the_fibonacci_function_of__integer_is__integer(N2, B);&#xA;the_addition_of__integer_with__integer_is__integer(A, B, Y);&#xA;}&#xA;else {&#xA;_integer _local__integer592947 = factory.create_integer();&#xA;_local__integer592947.setValue(1);&#xA;_integer_is__integer(Y, _local__integer592947);&#xA;}&#xA;;&#xA;">
+        <genParameters ecoreParameter="fib2.ecore#//_ops/the_fibonacci_function_of__integer_is__integer/X"/>
+        <genParameters ecoreParameter="fib2.ecore#//_ops/the_fibonacci_function_of__integer_is__integer/Y"/>
+      </genOperations>
+      <genOperations ecoreOperation="fib2.ecore#//_ops/output_the_result_of_the_fibonacci_function_from__integer_to__integer"
+          body="SystemFactoryImpl factory = new SystemFactoryImpl();&#xA;_boolean _local_boolean833609 = factory.create_boolean();&#xA;_integer_is_less_than_or_equal_to__integer_is__boolean(A, B, _local_boolean833609);&#xA;if (_local_boolean833609.isValue()) {&#xA;_integer _local__integer714888 = factory.create_integer();&#xA;_local__integer714888.setValue(1);&#xA;_integer I = factory.create_integer();&#xA;the_fibonacci_function_of__integer_is__integer(A, I);&#xA;output__integer(I);&#xA;the_addition_of__integer_with__integer_is__integer(A, _local__integer714888, A);&#xA;output_the_result_of_the_fibonacci_function_from__integer_to__integer(A, B);&#xA;}&#xA;;&#xA;">
+        <genParameters ecoreParameter="fib2.ecore#//_ops/output_the_result_of_the_fibonacci_function_from__integer_to__integer/A"/>
+        <genParameters ecoreParameter="fib2.ecore#//_ops/output_the_result_of_the_fibonacci_function_from__integer_to__integer/B"/>
+      </genOperations>
+      <genOperations ecoreOperation="fib2.ecore#//_ops/output_the_result_of_the_fibonacci_function_up_to__integer"
+          body="SystemFactoryImpl factory = new SystemFactoryImpl();&#xA;_integer _local__integer189110 = factory.create_integer();&#xA;_local__integer189110.setValue(1);&#xA;output_the_result_of_the_fibonacci_function_from__integer_to__integer(_local__integer189110, N);&#xA;">
+        <genParameters ecoreParameter="fib2.ecore#//_ops/output_the_result_of_the_fibonacci_function_up_to__integer/N"/>
+      </genOperations>
+      <genOperations ecoreOperation="fib2.ecore#//_ops/launch_application" body="SystemFactoryImpl factory = new SystemFactoryImpl();&#xA;_integer _local__integer931785 = factory.create_integer();&#xA;_local__integer931785.setValue(10);&#xA;output_the_result_of_the_fibonacci_function_up_to__integer(_local__integer931785);&#xA;"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="System" nsURI="System" nsPrefix="System">
+  <eClassifiers xsi:type="ecore:EClass" name="_string">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="_ops">
+    <eOperations name="print__string">
+      <eParameters name="S" lowerBound="1" eType="#//_string"/>
+    </eOperations>
+    <eOperations name="start_a_new_line"/>
+    <eOperations name="read_input_from_user_and_store_it_in__string">
+      <eParameters name="S" lowerBound="1" eType="#//_string"/>
+    </eOperations>
+    <eOperations name="launch_application">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="SystemFactoryImpl factory = new SystemFactoryImpl();&#xA;_string _local__string64823 = factory.create_string();&#xA;_local__string64823.setValue(&quot;Hey! What's your name?&quot;);&#xA;_string _local__string9837 = factory.create_string();&#xA;_local__string9837.setValue(&quot;Hello &quot;);&#xA;_string _local__string902337 = factory.create_string();&#xA;_local__string902337.setValue(&quot;! Welcome!&quot;);&#xA;_string S = factory.create_string();&#xA;print__string(_local__string64823);&#xA;start_a_new_line();&#xA;read_input_from_user_and_store_it_in__string(S);&#xA;print__string(_local__string9837);&#xA;print__string(S);&#xA;print__string(_local__string902337);&#xA;start_a_new_line();&#xA;"/>
+      </eAnnotations>
+    </eOperations>
+  </eClassifiers>
+</ecore:EPackage>

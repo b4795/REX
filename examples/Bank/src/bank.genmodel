@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/Bank/src" modelPluginID="Bank" modelName="Bank"
+    rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container" importerID="org.eclipse.emf.importer.ecore"
+    complianceLevel="5.0" copyrightFields="false" usedGenPackages="../../org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore"
+    operationReflection="true" importOrganizing="true">
+  <foreignModel>bank.ecore</foreignModel>
+  <genPackages prefix="System" basePackage="Bank" disposableProviderFactory="true"
+      ecorePackage="bank.ecore#/">
+    <genClasses ecoreClass="bank.ecore#//_boolean">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute bank.ecore#//_boolean/value"/>
+    </genClasses>
+    <genClasses ecoreClass="bank.ecore#//_integer">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute bank.ecore#//_integer/value"/>
+    </genClasses>
+    <genClasses ecoreClass="bank.ecore#//_string">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute bank.ecore#//_string/value"/>
+    </genClasses>
+    <genClasses ecoreClass="bank.ecore#//bank">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference bank.ecore#//bank/company_name"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference bank.ecore#//bank/address"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference bank.ecore#//bank/clients"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference bank.ecore#//bank/accounts"/>
+    </genClasses>
+    <genClasses ecoreClass="bank.ecore#//name">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference bank.ecore#//name/first_name"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference bank.ecore#//name/last_name"/>
+    </genClasses>
+    <genClasses ecoreClass="bank.ecore#//first_name"/>
+    <genClasses ecoreClass="bank.ecore#//last_name"/>
+    <genClasses ecoreClass="bank.ecore#//company_name"/>
+    <genClasses ecoreClass="bank.ecore#//address"/>
+    <genClasses ecoreClass="bank.ecore#//client">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference bank.ecore#//client/name"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference bank.ecore#//client/client_id"/>
+    </genClasses>
+    <genClasses ecoreClass="bank.ecore#//client_id"/>
+    <genClasses ecoreClass="bank.ecore#//account">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference bank.ecore#//account/account_id"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference bank.ecore#//account/client_id"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference bank.ecore#//account/amount_available"/>
+    </genClasses>
+    <genClasses ecoreClass="bank.ecore#//account_id"/>
+    <genClasses ecoreClass="bank.ecore#//amount"/>
+    <genClasses ecoreClass="bank.ecore#//amount_available"/>
+    <genClasses ecoreClass="bank.ecore#//_ops">
+      <genOperations ecoreOperation="bank.ecore#//_ops/output__integer">
+        <genParameters ecoreParameter="bank.ecore#//_ops/output__integer/X"/>
+      </genOperations>
+      <genOperations ecoreOperation="bank.ecore#//_ops/output__string">
+        <genParameters ecoreParameter="bank.ecore#//_ops/output__string/X"/>
+      </genOperations>
+      <genOperations ecoreOperation="bank.ecore#//_ops/output_a_new_line"/>
+      <genOperations ecoreOperation="bank.ecore#//_ops/_boolean_is_false">
+        <genParameters ecoreParameter="bank.ecore#//_ops/_boolean_is_false/B"/>
+      </genOperations>
+      <genOperations ecoreOperation="bank.ecore#//_ops/_boolean_is_true">
+        <genParameters ecoreParameter="bank.ecore#//_ops/_boolean_is_true/B"/>
+      </genOperations>
+      <genOperations ecoreOperation="bank.ecore#//_ops/_integer_is__integer">
+        <genParameters ecoreParameter="bank.ecore#//_ops/_integer_is__integer/X"/>
+        <genParameters ecoreParameter="bank.ecore#//_ops/_integer_is__integer/Y"/>
+      </genOperations>
+      <genOperations ecoreOperation="bank.ecore#//_ops/_string_is__string">
+        <genParameters ecoreParameter="bank.ecore#//_ops/_string_is__string/X"/>
+        <genParameters ecoreParameter="bank.ecore#//_ops/_string_is__string/Y"/>
+      </genOperations>
+      <genOperations ecoreOperation="bank.ecore#//_ops/read_input_from_user_and_store_it_in__integer">
+        <genParameters ecoreParameter="bank.ecore#//_ops/read_input_from_user_and_store_it_in__integer/I"/>
+      </genOperations>
+      <genOperations ecoreOperation="bank.ecore#//_ops/read_input_from_user_and_store_it_in__string">
+        <genParameters ecoreParameter="bank.ecore#//_ops/read_input_from_user_and_store_it_in__string/S"/>
+      </genOperations>
+      <genOperations ecoreOperation="bank.ecore#//_ops/_integer_is_equal_to__integer_is__boolean">
+        <genParameters ecoreParameter="bank.ecore#//_ops/_integer_is_equal_to__integer_is__boolean/X"/>
+        <genParameters ecoreParameter="bank.ecore#//_ops/_integer_is_equal_to__integer_is__boolean/Y"/>
+        <genParameters ecoreParameter="bank.ecore#//_ops/_integer_is_equal_to__integer_is__boolean/B"/>
+      </genOperations>
+      <genOperations ecoreOperation="bank.ecore#//_ops/_integer_is_not_equal_to__integer_is__boolean">
+        <genParameters ecoreParameter="bank.ecore#//_ops/_integer_is_not_equal_to__integer_is__boolean/X"/>
+        <genParameters ecoreParameter="bank.ecore#//_ops/_integer_is_not_equal_to__integer_is__boolean/Y"/>
+        <genParameters ecoreParameter="bank.ecore#//_ops/_integer_is_not_equal_to__integer_is__boolean/B"/>
+      </genOperations>
+      <genOperations ecoreOperation="bank.ecore#//_ops/_integer_is_greater_than_or_equal_to__integer_is__boolean">
+        <genParameters ecoreParameter="bank.ecore#//_ops/_integer_is_greater_than_or_equal_to__integer_is__boolean/X"/>
+        <genParameters ecoreParameter="bank.ecore#//_ops/_integer_is_greater_than_or_equal_to__integer_is__boolean/Y"/>
+        <genParameters ecoreParameter="bank.ecore#//_ops/_integer_is_greater_than_or_equal_to__integer_is__boolean/B"/>
+      </genOperations>
+      <genOperations ecoreOperation="bank.ecore#//_ops/_integer_is_greater_than__integer_is__boolean">
+        <genParameters ecoreParameter="bank.ecore#//_ops/_integer_is_greater_than__integer_is__boolean/X"/>
+        <genParameters ecoreParameter="bank.ecore#//_ops/_integer_is_greater_than__integer_is__boolean/Y"/>
+        <genParameters ecoreParameter="bank.ecore#//_ops/_integer_is_greater_than__integer_is__boolean/B"/>
+      </genOperations>
+      <genOperations ecoreOperation="bank.ecore#//_ops/_integer_is_less_than_or_equal_to__integer_is__boolean">
+        <genParameters ecoreParameter="bank.ecore#//_ops/_integer_is_less_than_or_equal_to__integer_is__boolean/X"/>
+        <genParameters ecoreParameter="bank.ecore#//_ops/_integer_is_less_than_or_equal_to__integer_is__boolean/Y"/>
+        <genParameters ecoreParameter="bank.ecore#//_ops/_integer_is_less_than_or_equal_to__integer_is__boolean/B"/>
+      </genOperations>
+      <genOperations ecoreOperation="bank.ecore#//_ops/_integer_is_less_than__integer_is__boolean">
+        <genParameters ecoreParameter="bank.ecore#//_ops/_integer_is_less_than__integer_is__boolean/X"/>
+        <genParameters ecoreParameter="bank.ecore#//_ops/_integer_is_less_than__integer_is__boolean/Y"/>
+        <genParameters ecoreParameter="bank.ecore#//_ops/_integer_is_less_than__integer_is__boolean/B"/>
+      </genOperations>
+      <genOperations ecoreOperation="bank.ecore#//_ops/the_addition_of__integer_with__integer_is__integer">
+        <genParameters ecoreParameter="bank.ecore#//_ops/the_addition_of__integer_with__integer_is__integer/A"/>
+        <genParameters ecoreParameter="bank.ecore#//_ops/the_addition_of__integer_with__integer_is__integer/B"/>
+        <genParameters ecoreParameter="bank.ecore#//_ops/the_addition_of__integer_with__integer_is__integer/X"/>
+      </genOperations>
+      <genOperations ecoreOperation="bank.ecore#//_ops/the_difference_between__integer_and__integer_is__integer">
+        <genParameters ecoreParameter="bank.ecore#//_ops/the_difference_between__integer_and__integer_is__integer/A"/>
+        <genParameters ecoreParameter="bank.ecore#//_ops/the_difference_between__integer_and__integer_is__integer/B"/>
+        <genParameters ecoreParameter="bank.ecore#//_ops/the_difference_between__integer_and__integer_is__integer/X"/>
+      </genOperations>
+      <genOperations ecoreOperation="bank.ecore#//_ops/_string_is_equal_to__string_is__boolean">
+        <genParameters ecoreParameter="bank.ecore#//_ops/_string_is_equal_to__string_is__boolean/X"/>
+        <genParameters ecoreParameter="bank.ecore#//_ops/_string_is_equal_to__string_is__boolean/Y"/>
+        <genParameters ecoreParameter="bank.ecore#//_ops/_string_is_equal_to__string_is__boolean/B"/>
+      </genOperations>
+      <genOperations ecoreOperation="bank.ecore#//_ops/require_press_enter_to_continue"
+          body="SystemFactoryImpl factory = new SystemFactoryImpl();&#xA;_string _local__string15522 = factory.create_string();&#xA;_local__string15522.setValue(&quot;Press ENTER to continue...&quot;);&#xA;output__string(_local__string15522);&#xA;_string S = factory.create_string();&#xA;read_input_from_user_and_store_it_in__string(S);&#xA;"/>
+      <genOperations ecoreOperation="bank.ecore#//_ops/clear_the_screen" body="SystemFactoryImpl factory = new SystemFactoryImpl();&#xA;output_a_new_line();&#xA;output_a_new_line();&#xA;output_a_new_line();&#xA;output_a_new_line();&#xA;output_a_new_line();&#xA;output_a_new_line();&#xA;output_a_new_line();&#xA;output_a_new_line();&#xA;output_a_new_line();&#xA;"/>
+      <genOperations ecoreOperation="bank.ecore#//_ops/name_is_name" body="SystemFactoryImpl factory = new SystemFactoryImpl();&#xA;_string fn = factory.create_string();&#xA;_string ln = factory.create_string();&#xA;_string_is__string(fn, N2.getFirst_name());&#xA;_string_is__string(ln, N2.getLast_name());&#xA;_string_is__string(N1.getFirst_name(), fn);&#xA;_string_is__string(N1.getLast_name(), ln);&#xA;">
+        <genParameters ecoreParameter="bank.ecore#//_ops/name_is_name/N1"/>
+        <genParameters ecoreParameter="bank.ecore#//_ops/name_is_name/N2"/>
+      </genOperations>
+      <genOperations ecoreOperation="bank.ecore#//_ops/output_client" body="SystemFactoryImpl factory = new SystemFactoryImpl();&#xA;_string _local__string568443 = factory.create_string();&#xA;_local__string568443.setValue(&quot; &quot;);&#xA;_string _local__string50821 = factory.create_string();&#xA;_local__string50821.setValue(&quot; (id: &quot;);&#xA;_string _local__string65903 = factory.create_string();&#xA;_local__string65903.setValue(&quot;)&quot;);&#xA;name N = factory.createname();&#xA;name_is_name(N, C.getName());&#xA;output__string(N.getFirst_name());&#xA;output__string(_local__string568443);&#xA;output__string(N.getLast_name());&#xA;output__string(_local__string50821);&#xA;output__integer(C.getClient_id());&#xA;output__string(_local__string65903);&#xA;output_a_new_line();&#xA;">
+        <genParameters ecoreParameter="bank.ecore#//_ops/output_client/C"/>
+      </genOperations>
+      <genOperations ecoreOperation="bank.ecore#//_ops/output_account" body="SystemFactoryImpl factory = new SystemFactoryImpl();&#xA;_string _local__string860422 = factory.create_string();&#xA;_local__string860422.setValue(&quot;account #&quot;);&#xA;_string _local__string746391 = factory.create_string();&#xA;_local__string746391.setValue(&quot; (client id: &quot;);&#xA;_string _local__string565972 = factory.create_string();&#xA;_local__string565972.setValue(&quot;, amount available: &quot;);&#xA;_string _local__string611089 = factory.create_string();&#xA;_local__string611089.setValue(&quot;)&quot;);&#xA;output__string(_local__string860422);&#xA;output__integer(A.getAccount_id());&#xA;output__string(_local__string746391);&#xA;output__integer(A.getClient_id());&#xA;output__string(_local__string565972);&#xA;output__integer(A.getAmount_available());&#xA;output__string(_local__string611089);&#xA;output_a_new_line();&#xA;">
+        <genParameters ecoreParameter="bank.ecore#//_ops/output_account/A"/>
+      </genOperations>
+      <genOperations ecoreOperation="bank.ecore#//_ops/account_is_the_element_number__integer_on_account">
+        <genParameters ecoreParameter="bank.ecore#//_ops/account_is_the_element_number__integer_on_account/A"/>
+        <genParameters ecoreParameter="bank.ecore#//_ops/account_is_the_element_number__integer_on_account/N"/>
+        <genParameters ecoreParameter="bank.ecore#//_ops/account_is_the_element_number__integer_on_account/As"/>
+      </genOperations>
+      <genOperations ecoreOperation="bank.ecore#//_ops/_integer_is_the_number_of_elements_in_account">
+        <genParameters ecoreParameter="bank.ecore#//_ops/_integer_is_the_number_of_elements_in_account/N"/>
+        <genParameters ecoreParameter="bank.ecore#//_ops/_integer_is_the_number_of_elements_in_account/As"/>
+      </genOperations>
+      <genOperations ecoreOperation="bank.ecore#//_ops/client_is_the_element_number__integer_on_client">
+        <genParameters ecoreParameter="bank.ecore#//_ops/client_is_the_element_number__integer_on_client/C"/>
+        <genParameters ecoreParameter="bank.ecore#//_ops/client_is_the_element_number__integer_on_client/N"/>
+        <genParameters ecoreParameter="bank.ecore#//_ops/client_is_the_element_number__integer_on_client/Cs"/>
+      </genOperations>
+      <genOperations ecoreOperation="bank.ecore#//_ops/_integer_is_the_number_of_elements_in_client">
+        <genParameters ecoreParameter="bank.ecore#//_ops/_integer_is_the_number_of_elements_in_client/N"/>
+        <genParameters ecoreParameter="bank.ecore#//_ops/_integer_is_the_number_of_elements_in_client/Cs"/>
+      </genOperations>
+      <genOperations ecoreOperation="bank.ecore#//_ops/add_client_to_bank">
+        <genParameters ecoreParameter="bank.ecore#//_ops/add_client_to_bank/C"/>
+        <genParameters ecoreParameter="bank.ecore#//_ops/add_client_to_bank/B"/>
+      </genOperations>
+      <genOperations ecoreOperation="bank.ecore#//_ops/add_account_to_bank">
+        <genParameters ecoreParameter="bank.ecore#//_ops/add_account_to_bank/C"/>
+        <genParameters ecoreParameter="bank.ecore#//_ops/add_account_to_bank/B"/>
+      </genOperations>
+      <genOperations ecoreOperation="bank.ecore#//_ops/generate_client_id_unique_to_bank">
+        <genParameters ecoreParameter="bank.ecore#//_ops/generate_client_id_unique_to_bank/I"/>
+        <genParameters ecoreParameter="bank.ecore#//_ops/generate_client_id_unique_to_bank/B"/>
+      </genOperations>
+      <genOperations ecoreOperation="bank.ecore#//_ops/generate_account_id_unique_to_bank">
+        <genParameters ecoreParameter="bank.ecore#//_ops/generate_account_id_unique_to_bank/I"/>
+        <genParameters ecoreParameter="bank.ecore#//_ops/generate_account_id_unique_to_bank/B"/>
+      </genOperations>
+      <genOperations ecoreOperation="bank.ecore#//_ops/create_client_on_bank" body="SystemFactoryImpl factory = new SystemFactoryImpl();&#xA;_string _local__string440289 = factory.create_string();&#xA;_local__string440289.setValue(&quot;First name: &quot;);&#xA;_string _local__string176059 = factory.create_string();&#xA;_local__string176059.setValue(&quot;Last name: &quot;);&#xA;name N = factory.createname();&#xA;client_id I = factory.createclient_id();&#xA;output__string(_local__string440289);&#xA;read_input_from_user_and_store_it_in__string(N.getFirst_name());&#xA;output__string(_local__string176059);&#xA;read_input_from_user_and_store_it_in__string(N.getLast_name());&#xA;name_is_name(C.getName(), N);&#xA;generate_client_id_unique_to_bank(I, B);&#xA;_integer_is__integer(C.getClient_id(), I);&#xA;add_client_to_bank(C, B);&#xA;">
+        <genParameters ecoreParameter="bank.ecore#//_ops/create_client_on_bank/C"/>
+        <genParameters ecoreParameter="bank.ecore#//_ops/create_client_on_bank/B"/>
+      </genOperations>
+      <genOperations ecoreOperation="bank.ecore#//_ops/client_is_the_client_with_client_id_on_bank">
+        <genParameters ecoreParameter="bank.ecore#//_ops/client_is_the_client_with_client_id_on_bank/C"/>
+        <genParameters ecoreParameter="bank.ecore#//_ops/client_is_the_client_with_client_id_on_bank/I"/>
+        <genParameters ecoreParameter="bank.ecore#//_ops/client_is_the_client_with_client_id_on_bank/B"/>
+      </genOperations>
+      <genOperations ecoreOperation="bank.ecore#//_ops/client_id_is_valid_for_bank_is__boolean"
+          body="SystemFactoryImpl factory = new SystemFactoryImpl();&#xA;_integer N = factory.create_integer();&#xA;_integer_is_the_number_of_elements_in_client(N, B.getClients());&#xA;_boolean _local_boolean330935 = factory.create_boolean();&#xA;_integer _local__integer111077 = factory.create_integer();&#xA;_local__integer111077.setValue(1);&#xA;_integer_is_greater_than_or_equal_to__integer_is__boolean(N, _local__integer111077, _local_boolean330935);&#xA;if (_local_boolean330935.isValue()) {&#xA;_integer _local__integer566582 = factory.create_integer();&#xA;_local__integer566582.setValue(1);&#xA;client_id_is_valid_for_client_numbers__integer_to__integer_is__boolean(I, B.getClients(), _local__integer566582, N, Y);&#xA;}&#xA;else {&#xA;_boolean_is_false(Y);&#xA;}&#xA;;&#xA;">
+        <genParameters ecoreParameter="bank.ecore#//_ops/client_id_is_valid_for_bank_is__boolean/I"/>
+        <genParameters ecoreParameter="bank.ecore#//_ops/client_id_is_valid_for_bank_is__boolean/B"/>
+        <genParameters ecoreParameter="bank.ecore#//_ops/client_id_is_valid_for_bank_is__boolean/Y"/>
+      </genOperations>
+      <genOperations ecoreOperation="bank.ecore#//_ops/client_id_is_valid_for_client_numbers__integer_to__integer_is__boolean"
+          body="SystemFactoryImpl factory = new SystemFactoryImpl();&#xA;_boolean _local_boolean865963 = factory.create_boolean();&#xA;_integer_is_greater_than__integer_is__boolean(A, B, _local_boolean865963);&#xA;if (_local_boolean865963.isValue()) {&#xA;_boolean_is_false(Y);&#xA;}&#xA;else {&#xA;client C = factory.createclient();&#xA;client_is_the_element_number__integer_on_client(C, A, Cs);&#xA;_boolean _local_boolean78397 = factory.create_boolean();&#xA;_integer_is_equal_to__integer_is__boolean(I, C.getClient_id(), _local_boolean78397);&#xA;if (_local_boolean78397.isValue()) {&#xA;_boolean_is_true(Y);&#xA;}&#xA;else {&#xA;_integer _local__integer649463 = factory.create_integer();&#xA;_local__integer649463.setValue(1);&#xA;the_addition_of__integer_with__integer_is__integer(A, _local__integer649463, A);&#xA;client_id_is_valid_for_client_numbers__integer_to__integer_is__boolean(I, Cs, A, B, Y);&#xA;}&#xA;;&#xA;}&#xA;;&#xA;">
+        <genParameters ecoreParameter="bank.ecore#//_ops/client_id_is_valid_for_client_numbers__integer_to__integer_is__boolean/I"/>
+        <genParameters ecoreParameter="bank.ecore#//_ops/client_id_is_valid_for_client_numbers__integer_to__integer_is__boolean/Cs"/>
+        <genParameters ecoreParameter="bank.ecore#//_ops/client_id_is_valid_for_client_numbers__integer_to__integer_is__boolean/A"/>
+        <genParameters ecoreParameter="bank.ecore#//_ops/client_id_is_valid_for_client_numbers__integer_to__integer_is__boolean/B"/>
+        <genParameters ecoreParameter="bank.ecore#//_ops/client_id_is_valid_for_client_numbers__integer_to__integer_is__boolean/Y"/>
+      </genOperations>
+      <genOperations ecoreOperation="bank.ecore#//_ops/client_id_is_not_valid_for_bank_is__boolean"
+          body="SystemFactoryImpl factory = new SystemFactoryImpl();&#xA;_boolean _local_boolean927102 = factory.create_boolean();&#xA;client_id_is_valid_for_bank_is__boolean(I, B, _local_boolean927102);&#xA;if (_local_boolean927102.isValue()) {&#xA;_boolean_is_false(Y);&#xA;}&#xA;else {&#xA;_boolean_is_true(Y);&#xA;}&#xA;;&#xA;">
+        <genParameters ecoreParameter="bank.ecore#//_ops/client_id_is_not_valid_for_bank_is__boolean/I"/>
+        <genParameters ecoreParameter="bank.ecore#//_ops/client_id_is_not_valid_for_bank_is__boolean/B"/>
+        <genParameters ecoreParameter="bank.ecore#//_ops/client_id_is_not_valid_for_bank_is__boolean/Y"/>
+      </genOperations>
+      <genOperations ecoreOperation="bank.ecore#//_ops/create_account_on_bank" body="SystemFactoryImpl factory = new SystemFactoryImpl();&#xA;_integer _local__integer421258 = factory.create_integer();&#xA;_local__integer421258.setValue(0);&#xA;account_id I = factory.createaccount_id();&#xA;_integer_is__integer(A.getAmount_available(), _local__integer421258);&#xA;generate_account_id_unique_to_bank(I, B);&#xA;_integer_is__integer(A.getAccount_id(), I);&#xA;add_account_to_bank(A, B);&#xA;">
+        <genParameters ecoreParameter="bank.ecore#//_ops/create_account_on_bank/A"/>
+        <genParameters ecoreParameter="bank.ecore#//_ops/create_account_on_bank/B"/>
+      </genOperations>
+      <genOperations ecoreOperation="bank.ecore#//_ops/account_is_the_account_with_account_id_on_bank">
+        <genParameters ecoreParameter="bank.ecore#//_ops/account_is_the_account_with_account_id_on_bank/A"/>
+        <genParameters ecoreParameter="bank.ecore#//_ops/account_is_the_account_with_account_id_on_bank/I"/>
+        <genParameters ecoreParameter="bank.ecore#//_ops/account_is_the_account_with_account_id_on_bank/B"/>
+      </genOperations>
+      <genOperations ecoreOperation="bank.ecore#//_ops/account_id_is_valid_for_bank_is__boolean">
+        <genParameters ecoreParameter="bank.ecore#//_ops/account_id_is_valid_for_bank_is__boolean/I"/>
+        <genParameters ecoreParameter="bank.ecore#//_ops/account_id_is_valid_for_bank_is__boolean/B"/>
+        <genParameters ecoreParameter="bank.ecore#//_ops/account_id_is_valid_for_bank_is__boolean/Y"/>
+      </genOperations>
+      <genOperations ecoreOperation="bank.ecore#//_ops/account_id_is_not_valid_for_bank_is__boolean"
+          body="SystemFactoryImpl factory = new SystemFactoryImpl();&#xA;_boolean _local_boolean110057 = factory.create_boolean();&#xA;account_id_is_valid_for_bank_is__boolean(I, B, _local_boolean110057);&#xA;if (_local_boolean110057.isValue()) {&#xA;_boolean_is_false(Y);&#xA;}&#xA;else {&#xA;_boolean_is_true(Y);&#xA;}&#xA;;&#xA;">
+        <genParameters ecoreParameter="bank.ecore#//_ops/account_id_is_not_valid_for_bank_is__boolean/I"/>
+        <genParameters ecoreParameter="bank.ecore#//_ops/account_id_is_not_valid_for_bank_is__boolean/B"/>
+        <genParameters ecoreParameter="bank.ecore#//_ops/account_id_is_not_valid_for_bank_is__boolean/Y"/>
+      </genOperations>
+      <genOperations ecoreOperation="bank.ecore#//_ops/the_client_with_client_id_has_accounts_on_bank_is__boolean">
+        <genParameters ecoreParameter="bank.ecore#//_ops/the_client_with_client_id_has_accounts_on_bank_is__boolean/I"/>
+        <genParameters ecoreParameter="bank.ecore#//_ops/the_client_with_client_id_has_accounts_on_bank_is__boolean/B"/>
+        <genParameters ecoreParameter="bank.ecore#//_ops/the_client_with_client_id_has_accounts_on_bank_is__boolean/Y"/>
+      </genOperations>
+      <genOperations ecoreOperation="bank.ecore#//_ops/remove_the_client_with_client_id_from_bank">
+        <genParameters ecoreParameter="bank.ecore#//_ops/remove_the_client_with_client_id_from_bank/I"/>
+        <genParameters ecoreParameter="bank.ecore#//_ops/remove_the_client_with_client_id_from_bank/B"/>
+      </genOperations>
+      <genOperations ecoreOperation="bank.ecore#//_ops/remove_the_account_with_account_id_from_bank">
+        <genParameters ecoreParameter="bank.ecore#//_ops/remove_the_account_with_account_id_from_bank/I"/>
+        <genParameters ecoreParameter="bank.ecore#//_ops/remove_the_account_with_account_id_from_bank/B"/>
+      </genOperations>
+      <genOperations ecoreOperation="bank.ecore#//_ops/list_all_client_in_bank" body="SystemFactoryImpl factory = new SystemFactoryImpl();&#xA;_integer N = factory.create_integer();&#xA;_integer_is_the_number_of_elements_in_client(N, B.getClients());&#xA;_boolean _local_boolean300770 = factory.create_boolean();&#xA;_integer _local__integer729900 = factory.create_integer();&#xA;_local__integer729900.setValue(1);&#xA;_integer_is_greater_than_or_equal_to__integer_is__boolean(N, _local__integer729900, _local_boolean300770);&#xA;if (_local_boolean300770.isValue()) {&#xA;_integer _local__integer619966 = factory.create_integer();&#xA;_local__integer619966.setValue(1);&#xA;list_clients_number__integer_to__integer_on_client(_local__integer619966, N, B.getClients());&#xA;}&#xA;;&#xA;">
+        <genParameters ecoreParameter="bank.ecore#//_ops/list_all_client_in_bank/B"/>
+      </genOperations>
+      <genOperations ecoreOperation="bank.ecore#//_ops/list_clients_number__integer_to__integer_on_client"
+          body="SystemFactoryImpl factory = new SystemFactoryImpl();&#xA;_boolean _local_boolean786020 = factory.create_boolean();&#xA;_integer_is_less_than_or_equal_to__integer_is__boolean(A, B, _local_boolean786020);&#xA;if (_local_boolean786020.isValue()) {&#xA;_integer _local__integer191829 = factory.create_integer();&#xA;_local__integer191829.setValue(1);&#xA;client C = factory.createclient();&#xA;client_is_the_element_number__integer_on_client(C, A, Cs);&#xA;output_client(C);&#xA;the_addition_of__integer_with__integer_is__integer(A, _local__integer191829, A);&#xA;list_clients_number__integer_to__integer_on_client(A, B, Cs);&#xA;}&#xA;;&#xA;">
+        <genParameters ecoreParameter="bank.ecore#//_ops/list_clients_number__integer_to__integer_on_client/A"/>
+        <genParameters ecoreParameter="bank.ecore#//_ops/list_clients_number__integer_to__integer_on_client/B"/>
+        <genParameters ecoreParameter="bank.ecore#//_ops/list_clients_number__integer_to__integer_on_client/Cs"/>
+      </genOperations>
+      <genOperations ecoreOperation="bank.ecore#//_ops/list_all_accounts_in_bank"
+          body="SystemFactoryImpl factory = new SystemFactoryImpl();&#xA;_integer N = factory.create_integer();&#xA;_integer_is_the_number_of_elements_in_account(N, B.getAccounts());&#xA;_boolean _local_boolean24761 = factory.create_boolean();&#xA;_integer _local__integer943657 = factory.create_integer();&#xA;_local__integer943657.setValue(1);&#xA;_integer_is_greater_than_or_equal_to__integer_is__boolean(N, _local__integer943657, _local_boolean24761);&#xA;if (_local_boolean24761.isValue()) {&#xA;_integer _local__integer981403 = factory.create_integer();&#xA;_local__integer981403.setValue(1);&#xA;list_accounts_number__integer_to__integer_on_account(_local__integer981403, N, B.getAccounts());&#xA;}&#xA;;&#xA;">
+        <genParameters ecoreParameter="bank.ecore#//_ops/list_all_accounts_in_bank/B"/>
+      </genOperations>
+      <genOperations ecoreOperation="bank.ecore#//_ops/list_accounts_number__integer_to__integer_on_account"
+          body="SystemFactoryImpl factory = new SystemFactoryImpl();&#xA;_boolean _local_boolean349861 = factory.create_boolean();&#xA;_integer_is_less_than_or_equal_to__integer_is__boolean(A, B, _local_boolean349861);&#xA;if (_local_boolean349861.isValue()) {&#xA;_integer _local__integer175345 = factory.create_integer();&#xA;_local__integer175345.setValue(1);&#xA;account ACC = factory.createaccount();&#xA;account_is_the_element_number__integer_on_account(ACC, A, ACCs);&#xA;output_account(ACC);&#xA;the_addition_of__integer_with__integer_is__integer(A, _local__integer175345, A);&#xA;list_accounts_number__integer_to__integer_on_account(A, B, ACCs);&#xA;}&#xA;;&#xA;">
+        <genParameters ecoreParameter="bank.ecore#//_ops/list_accounts_number__integer_to__integer_on_account/A"/>
+        <genParameters ecoreParameter="bank.ecore#//_ops/list_accounts_number__integer_to__integer_on_account/B"/>
+        <genParameters ecoreParameter="bank.ecore#//_ops/list_accounts_number__integer_to__integer_on_account/ACCs"/>
+      </genOperations>
+      <genOperations ecoreOperation="bank.ecore#//_ops/show_welcome_message_for_bank"
+          body="SystemFactoryImpl factory = new SystemFactoryImpl();&#xA;_string _local__string367360 = factory.create_string();&#xA;_local__string367360.setValue(&quot;Welcome to &quot;);&#xA;_string _local__string997267 = factory.create_string();&#xA;_local__string997267.setValue(&quot;!&quot;);&#xA;_string _local__string827310 = factory.create_string();&#xA;_local__string827310.setValue(&quot;If you don't find what you are looking for,&quot;);&#xA;_string _local__string907892 = factory.create_string();&#xA;_local__string907892.setValue(&quot;you can reach us at the following address:&quot;);&#xA;_string _local__string974065 = factory.create_string();&#xA;_local__string974065.setValue(&quot;    &quot;);&#xA;output__string(_local__string367360);&#xA;output__string(B.getCompany_name());&#xA;output__string(_local__string997267);&#xA;output_a_new_line();&#xA;output_a_new_line();&#xA;output__string(_local__string827310);&#xA;output_a_new_line();&#xA;output__string(_local__string907892);&#xA;output_a_new_line();&#xA;output_a_new_line();&#xA;output__string(_local__string974065);&#xA;output__string(B.getAddress());&#xA;output_a_new_line();&#xA;output_a_new_line();&#xA;">
+        <genParameters ecoreParameter="bank.ecore#//_ops/show_welcome_message_for_bank/B"/>
+      </genOperations>
+      <genOperations ecoreOperation="bank.ecore#//_ops/launch_create_a_client_page_for_bank"
+          body="SystemFactoryImpl factory = new SystemFactoryImpl();&#xA;_string _local__string321219 = factory.create_string();&#xA;_local__string321219.setValue(&quot;CREATE A NEW CLIENT&quot;);&#xA;output__string(_local__string321219);&#xA;output_a_new_line();&#xA;client C = factory.createclient();&#xA;create_client_on_bank(C, B);&#xA;output_client(C);&#xA;">
+        <genParameters ecoreParameter="bank.ecore#//_ops/launch_create_a_client_page_for_bank/B"/>
+      </genOperations>
+      <genOperations ecoreOperation="bank.ecore#//_ops/launch_create_an_account_page_for_bank"
+          body="SystemFactoryImpl factory = new SystemFactoryImpl();&#xA;_string _local__string620774 = factory.create_string();&#xA;_local__string620774.setValue(&quot;CREATE A NEW ACCOUNT&quot;);&#xA;_string _local__string468893 = factory.create_string();&#xA;_local__string468893.setValue(&quot;Client id: &quot;);&#xA;output__string(_local__string620774);&#xA;output_a_new_line();&#xA;client_id I = factory.createclient_id();&#xA;output__string(_local__string468893);&#xA;read_input_from_user_and_store_it_in__integer(I);&#xA;_boolean _local_boolean743664 = factory.create_boolean();&#xA;client_id_is_valid_for_bank_is__boolean(I, B, _local_boolean743664);&#xA;if (_local_boolean743664.isValue()) {&#xA;account A = factory.createaccount();&#xA;create_account_on_bank(A, B);&#xA;_integer_is__integer(A.getClient_id(), I);&#xA;output_account(A);&#xA;}&#xA;else {&#xA;_string _local__string895097 = factory.create_string();&#xA;_local__string895097.setValue(&quot;That is not valid client id. Please try again.&quot;);&#xA;output__string(_local__string895097);&#xA;output_a_new_line();&#xA;}&#xA;;&#xA;">
+        <genParameters ecoreParameter="bank.ecore#//_ops/launch_create_an_account_page_for_bank/B"/>
+      </genOperations>
+      <genOperations ecoreOperation="bank.ecore#//_ops/launch_remove_a_client_page_for_bank"
+          body="SystemFactoryImpl factory = new SystemFactoryImpl();&#xA;_string _local__string194811 = factory.create_string();&#xA;_local__string194811.setValue(&quot;REMOVE A CLIENT&quot;);&#xA;_string _local__string492571 = factory.create_string();&#xA;_local__string492571.setValue(&quot;Client id: &quot;);&#xA;output__string(_local__string194811);&#xA;output_a_new_line();&#xA;client_id I = factory.createclient_id();&#xA;output__string(_local__string492571);&#xA;read_input_from_user_and_store_it_in__integer(I);&#xA;_boolean _local_boolean133509 = factory.create_boolean();&#xA;client_id_is_not_valid_for_bank_is__boolean(I, B, _local_boolean133509);&#xA;if (_local_boolean133509.isValue()) {&#xA;_string _local__string499406 = factory.create_string();&#xA;_local__string499406.setValue(&quot;That is not valid client id. Please try again.&quot;);&#xA;output__string(_local__string499406);&#xA;output_a_new_line();&#xA;}&#xA;else {&#xA;_boolean _local_boolean523137 = factory.create_boolean();&#xA;the_client_with_client_id_has_accounts_on_bank_is__boolean(I, B, _local_boolean523137);&#xA;if (_local_boolean523137.isValue()) {&#xA;_string _local__string964410 = factory.create_string();&#xA;_local__string964410.setValue(&quot;The client has accounts. Please remove them first.&quot;);&#xA;output__string(_local__string964410);&#xA;output_a_new_line();&#xA;}&#xA;else {&#xA;remove_the_client_with_client_id_from_bank(I, B);&#xA;}&#xA;;&#xA;}&#xA;;&#xA;">
+        <genParameters ecoreParameter="bank.ecore#//_ops/launch_remove_a_client_page_for_bank/B"/>
+      </genOperations>
+      <genOperations ecoreOperation="bank.ecore#//_ops/launch_remove_an_account_page_for_bank"
+          body="SystemFactoryImpl factory = new SystemFactoryImpl();&#xA;_string _local__string61703 = factory.create_string();&#xA;_local__string61703.setValue(&quot;REMOVE AN ACCOUNT&quot;);&#xA;_string _local__string104291 = factory.create_string();&#xA;_local__string104291.setValue(&quot;Account id: &quot;);&#xA;output__string(_local__string61703);&#xA;output_a_new_line();&#xA;account_id I = factory.createaccount_id();&#xA;output__string(_local__string104291);&#xA;read_input_from_user_and_store_it_in__integer(I);&#xA;_boolean _local_boolean935589 = factory.create_boolean();&#xA;account_id_is_not_valid_for_bank_is__boolean(I, B, _local_boolean935589);&#xA;if (_local_boolean935589.isValue()) {&#xA;_string _local__string89597 = factory.create_string();&#xA;_local__string89597.setValue(&quot;That is not valid account id. Please try again.&quot;);&#xA;output__string(_local__string89597);&#xA;output_a_new_line();&#xA;}&#xA;else {&#xA;account C = factory.createaccount();&#xA;account_is_the_account_with_account_id_on_bank(C, I, B);&#xA;_boolean _local_boolean376865 = factory.create_boolean();&#xA;_integer _local__integer932008 = factory.create_integer();&#xA;_local__integer932008.setValue(0);&#xA;_integer_is_not_equal_to__integer_is__boolean(C.getAmount_available(), _local__integer932008, _local_boolean376865);&#xA;if (_local_boolean376865.isValue()) {&#xA;_string _local__string614565 = factory.create_string();&#xA;_local__string614565.setValue(&quot;The account is not empty. Please empty it first.&quot;);&#xA;output__string(_local__string614565);&#xA;output_a_new_line();&#xA;}&#xA;else {&#xA;remove_the_account_with_account_id_from_bank(I, B);&#xA;}&#xA;;&#xA;}&#xA;;&#xA;">
+        <genParameters ecoreParameter="bank.ecore#//_ops/launch_remove_an_account_page_for_bank/B"/>
+      </genOperations>
+      <genOperations ecoreOperation="bank.ecore#//_ops/launch_main_menu_for_bank"
+          body="SystemFactoryImpl factory = new SystemFactoryImpl();&#xA;_string _local__string330853 = factory.create_string();&#xA;_local__string330853.setValue(&quot;1. List clients&quot;);&#xA;_string _local__string272922 = factory.create_string();&#xA;_local__string272922.setValue(&quot;2. List accounts&quot;);&#xA;_string _local__string445087 = factory.create_string();&#xA;_local__string445087.setValue(&quot;3. Create a client&quot;);&#xA;_string _local__string227723 = factory.create_string();&#xA;_local__string227723.setValue(&quot;4. Create an account&quot;);&#xA;_string _local__string477077 = factory.create_string();&#xA;_local__string477077.setValue(&quot;5. Remove a client&quot;);&#xA;_string _local__string51412 = factory.create_string();&#xA;_local__string51412.setValue(&quot;6. Remove an account&quot;);&#xA;_string _local__string260540 = factory.create_string();&#xA;_local__string260540.setValue(&quot;7. Deposit&quot;);&#xA;_string _local__string460682 = factory.create_string();&#xA;_local__string460682.setValue(&quot;8. Withdraw&quot;);&#xA;_string _local__string262885 = factory.create_string();&#xA;_local__string262885.setValue(&quot;9. Transfer&quot;);&#xA;_string _local__string258325 = factory.create_string();&#xA;_local__string258325.setValue(&quot;0. Exit&quot;);&#xA;_string _local__string556783 = factory.create_string();&#xA;_local__string556783.setValue(&quot;What would you like to do? Enter an option: &quot;);&#xA;clear_the_screen();&#xA;show_welcome_message_for_bank(B);&#xA;output__string(_local__string330853);&#xA;output_a_new_line();&#xA;output__string(_local__string272922);&#xA;output_a_new_line();&#xA;output__string(_local__string445087);&#xA;output_a_new_line();&#xA;output__string(_local__string227723);&#xA;output_a_new_line();&#xA;output__string(_local__string477077);&#xA;output_a_new_line();&#xA;output__string(_local__string51412);&#xA;output_a_new_line();&#xA;output__string(_local__string260540);&#xA;output_a_new_line();&#xA;output__string(_local__string460682);&#xA;output_a_new_line();&#xA;output__string(_local__string262885);&#xA;output_a_new_line();&#xA;output__string(_local__string258325);&#xA;output_a_new_line();&#xA;output_a_new_line();&#xA;output__string(_local__string556783);&#xA;_string O = factory.create_string();&#xA;read_input_from_user_and_store_it_in__string(O);&#xA;output_a_new_line();&#xA;output_a_new_line();&#xA;_boolean _local_boolean524259 = factory.create_boolean();&#xA;_string _local__string148618 = factory.create_string();&#xA;_local__string148618.setValue(&quot;1&quot;);&#xA;_string_is_equal_to__string_is__boolean(O, _local__string148618, _local_boolean524259);&#xA;if (_local_boolean524259.isValue()) {&#xA;_string _local__string822438 = factory.create_string();&#xA;_local__string822438.setValue(&quot;LIST OF CLIENTS&quot;);&#xA;output__string(_local__string822438);&#xA;output_a_new_line();&#xA;list_all_client_in_bank(B);&#xA;require_press_enter_to_continue();&#xA;launch_main_menu_for_bank(B);&#xA;}&#xA;else {&#xA;_boolean _local_boolean284026 = factory.create_boolean();&#xA;_string _local__string178015 = factory.create_string();&#xA;_local__string178015.setValue(&quot;2&quot;);&#xA;_string_is_equal_to__string_is__boolean(O, _local__string178015, _local_boolean284026);&#xA;if (_local_boolean284026.isValue()) {&#xA;_string _local__string169717 = factory.create_string();&#xA;_local__string169717.setValue(&quot;LIST OF ACCOUNTS&quot;);&#xA;output__string(_local__string169717);&#xA;output_a_new_line();&#xA;list_all_accounts_in_bank(B);&#xA;require_press_enter_to_continue();&#xA;launch_main_menu_for_bank(B);&#xA;}&#xA;else {&#xA;_boolean _local_boolean34084 = factory.create_boolean();&#xA;_string _local__string995 = factory.create_string();&#xA;_local__string995.setValue(&quot;3&quot;);&#xA;_string_is_equal_to__string_is__boolean(O, _local__string995, _local_boolean34084);&#xA;if (_local_boolean34084.isValue()) {&#xA;launch_create_a_client_page_for_bank(B);&#xA;require_press_enter_to_continue();&#xA;launch_main_menu_for_bank(B);&#xA;}&#xA;else {&#xA;_boolean _local_boolean790941 = factory.create_boolean();&#xA;_string _local__string52249 = factory.create_string();&#xA;_local__string52249.setValue(&quot;4&quot;);&#xA;_string_is_equal_to__string_is__boolean(O, _local__string52249, _local_boolean790941);&#xA;if (_local_boolean790941.isValue()) {&#xA;launch_create_an_account_page_for_bank(B);&#xA;require_press_enter_to_continue();&#xA;launch_main_menu_for_bank(B);&#xA;}&#xA;else {&#xA;_boolean _local_boolean767609 = factory.create_boolean();&#xA;_string _local__string284043 = factory.create_string();&#xA;_local__string284043.setValue(&quot;5&quot;);&#xA;_string_is_equal_to__string_is__boolean(O, _local__string284043, _local_boolean767609);&#xA;if (_local_boolean767609.isValue()) {&#xA;launch_remove_a_client_page_for_bank(B);&#xA;require_press_enter_to_continue();&#xA;launch_main_menu_for_bank(B);&#xA;}&#xA;else {&#xA;_boolean _local_boolean330005 = factory.create_boolean();&#xA;_string _local__string33144 = factory.create_string();&#xA;_local__string33144.setValue(&quot;6&quot;);&#xA;_string_is_equal_to__string_is__boolean(O, _local__string33144, _local_boolean330005);&#xA;if (_local_boolean330005.isValue()) {&#xA;launch_remove_an_account_page_for_bank(B);&#xA;require_press_enter_to_continue();&#xA;launch_main_menu_for_bank(B);&#xA;}&#xA;else {&#xA;_boolean _local_boolean646881 = factory.create_boolean();&#xA;_string _local__string10996 = factory.create_string();&#xA;_local__string10996.setValue(&quot;0&quot;);&#xA;_string_is_equal_to__string_is__boolean(O, _local__string10996, _local_boolean646881);&#xA;if (_local_boolean646881.isValue()) {&#xA;_string _local__string53671 = factory.create_string();&#xA;_local__string53671.setValue(&quot;LEAVING...&quot;);&#xA;output__string(_local__string53671);&#xA;output_a_new_line();&#xA;}&#xA;else {&#xA;_string _local__string283188 = factory.create_string();&#xA;_local__string283188.setValue(&quot;That option is not valid or it is not implemented. Please try again.&quot;);&#xA;output__string(_local__string283188);&#xA;output_a_new_line();&#xA;require_press_enter_to_continue();&#xA;launch_main_menu_for_bank(B);&#xA;}&#xA;;&#xA;}&#xA;;&#xA;}&#xA;;&#xA;}&#xA;;&#xA;}&#xA;;&#xA;}&#xA;;&#xA;}&#xA;;&#xA;">
+        <genParameters ecoreParameter="bank.ecore#//_ops/launch_main_menu_for_bank/B"/>
+      </genOperations>
+      <genOperations ecoreOperation="bank.ecore#//_ops/main" body="SystemFactoryImpl factory = new SystemFactoryImpl();&#xA;_string _local__string207996 = factory.create_string();&#xA;_local__string207996.setValue(&quot;XPTO Bank&quot;);&#xA;_string _local__string478677 = factory.create_string();&#xA;_local__string478677.setValue(&quot;XPTO Bank, Street S, City C, Country C2&quot;);&#xA;bank B = factory.createbank();&#xA;_string_is__string(B.getCompany_name(), _local__string207996);&#xA;_string_is__string(B.getAddress(), _local__string478677);&#xA;launch_main_menu_for_bank(B);&#xA;"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

@@ -1,0 +1,5 @@
+there_are strings (string).
+it_is_possible_to print a string S.
+
+if launch_application, then
+	print "hello, world!".

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated fib -->
+      <package
+            uri="System"
+            class="Fib.System.SystemPackage"
+            genModel="src/fib.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated fib2 -->
+      <package
+            uri="System"
+            class="Fib2.System.SystemPackage"
+            genModel="src/fib2.genmodel"/>
+   </extension>
+
+</plugin>

@@ -1,0 +1,201 @@
+grammar org.xtext.example.mydsl.MyDsl with org.eclipse.xtext.common.Terminals
+
+generate myDsl "http://www.xtext.org/example/mydsl/MyDsl"
+
+Model:
+	stmt+=Stmt*;
+	
+Stmt:
+	(ExistenceStmt | CompositionStmt | InheritanceStmt | OperationStmt) ".";
+
+ExistenceStmt:
+	ExistenceDefiniteStmt | ExistenceIndefiniteStmt
+;
+
+ExistenceDefiniteStmt:
+	"there_is_one" definite=ExistenceDefinitePhrase
+;
+
+ExistenceDefinitePhrase:
+	name=ID
+;
+
+ExistenceDefiniteRefPhrase:
+	'the' ref=[ExistenceDefinitePhrase]
+;
+
+ExistenceDefiniteRefListPhrase:
+	elements+=ExistenceDefiniteRefPhrase ("," "and"? elements+=ExistenceDefiniteRefPhrase)*
+;
+
+ExistenceIndefiniteStmt:
+	"there_are" plural=ExistencePluralIndefinitePhrase "(" singular=ExistenceSingularIndefinitePhrase ")"
+;
+
+ExistenceSingularIndefinitePhrase:
+	name=ID
+;
+
+ExistencePluralIndefinitePhrase:
+	name=ID
+;
+
+ExistenceSingularIndefiniteRefPhrase:
+	('one' | 'a' | 'an') ref=[ExistenceSingularIndefinitePhrase]
+;
+
+ExistencePluralIndefiniteRefPhrase:
+	(INT | "one_or_more" | "zero_or_more")? ref=[ExistencePluralIndefinitePhrase]
+;
+
+ExistenceSingularIndefiniteRefListPhrase:
+	elements+=ExistenceSingularIndefiniteRefPhrase ("," "and"? elements+=ExistenceSingularIndefiniteRefPhrase)*
+;
+
+ExistencePluralIndefiniteRefListPhrase:
+	elements+=ExistencePluralIndefiniteRefPhrase ("," "and"? elements+=ExistencePluralIndefiniteRefPhrase)*
+;
+
+ExistenceSingularRefListPhrase:
+	ExistenceDefiniteRefListPhrase | ExistenceSingularIndefiniteRefListPhrase
+;
+
+ExistenceAnyRefListPhrase:
+	ExistenceDefiniteRefListPhrase | ExistenceSingularIndefiniteRefListPhrase | ExistencePluralIndefiniteRefListPhrase
+;
+
+ExistenceIndefiniteRefPhrase:
+	ExistenceSingularIndefiniteRefPhrase | ExistencePluralIndefiniteRefPhrase
+;
+
+ExistenceAnyPhrase:
+	ExistenceDefinitePhrase |
+	ExistenceSingularIndefinitePhrase |
+	ExistencePluralIndefinitePhrase
+;
+
+CompositionStmt:
+	parent=ExistenceSingularRefListPhrase
+	("has" | "is_composed_by" | "contains")
+	children=ExistenceAnyRefListPhrase
+;
+
+InheritanceStmt:
+	class=ExistenceSingularRefListPhrase
+	('is' | 'are_each')
+	superclass=ExistenceSingularRefListPhrase
+;
+
+OperationStmt:
+	OperationDeclarationStmt |
+	OperationDefinitionStmt
+;
+
+OperationDeclarationStmt:
+	('it_is_possible_that'|'it_is_possible_to'|'it_is_possible')
+		OperationDeclarionHeaderStmt
+;
+
+OperationDeclarionHeaderStmt:
+	parameters+=(OperationParameterPhrase)+
+;
+
+OperationParameterPhrase:
+	OperationParameterVariableDeclarationPhrase |
+	OperationParameterConnectionPhrase
+;
+
+OperationDefinitionStmt:
+	'if' header=OperationDeclarionHeaderStmt ','
+		'then' body=OperationDefinitionBodyStmts
+;
+
+OperationDefinitionBodyStmts:
+	stmts+=OperationDefinitionBodyStmt (',' stmts+=OperationDefinitionBodyStmt)*
+;
+
+OperationDefinitionBodyStmt:
+	OperationDefinitionBodyUnconditionalStmt |
+	OperationDefinitionBodyConditionalStmt
+;
+
+OperationDefinitionBodyUnconditionalStmt:
+	OperationDefinitionBodyUnconditionalPhrase
+;
+
+OperationDefinitionBodyUnconditionalPhrase:
+	OperationDefinitionBodyFunctionCallPhrase |
+	OperationDefinitionBodyVariableDeclarationPhrase
+;
+
+OperationDefinitionBodyFunctionCallPhrase:
+	arguments+=OperationDefinitionBodyFunctionCallArgumentsPhrase+
+;
+
+OperationDefinitionBodyFunctionCallArgumentsPhrase:
+	OperationDefinitionBodyFunctionCallInRefsRefPhrase |
+	InstanceRefPhrase |
+	OperationParameterConnectionBuiltinRefPhrase
+;
+
+OperationDefinitionBodyFunctionCallInRefsRefPhrase:
+	ref=[OperationDefinitionBodyFunctionCallInRefsPhrase]
+;
+
+OperationDefinitionBodyFunctionCallInRefsPhrase:
+	OperationParameterConnectionPhrase |
+	OperationDefinitionBodyFunctionCallInRefsObjectsPhrase
+;
+OperationDefinitionBodyFunctionCallInRefsObjectsPhrase:
+	OperationParameterVariableDeclarationPhrase |
+	OperationDefinitionBodyVariableDeclarationPhrase;
+
+OperationDefinitionBodyVariableDeclarationPhrase:
+	'there_is_one' type=[ExistenceSingularIndefinitePhrase] name=ID
+;
+
+OperationDefinitionBodyConditionalStmt:
+	'if' condition=OperationDefinitionBodyFunctionCallPhrase ','
+	'then' thenBody=OperationDefinitionBodyStmts
+	(';' 'else' elseBody=OperationDefinitionBodyStmts)?
+;
+
+OperationParameterVariableDeclarationPhrase:
+	type=ExistenceIndefiniteRefPhrase name=ID
+;
+
+OperationParameterConnectionPhrase:
+	name=(ID|'is'|'and'|'or')
+;
+
+OperationParameterConnectionBuiltinRefPhrase:
+	name=('is'|'and'|'or')
+;
+
+InstanceRefPhrase:
+	f=InstanceDirectRefPhrase |
+	(
+		'the' class=[ExistenceAnyPhrase] f=(InstanceDirectRefPhrase|InstanceIndirectRefPhrase)?
+	)
+;
+
+InstanceDirectRefPhrase:
+	 (value=InstanceBuiltinValuePhrase /*(units=[UnitsAnyPhrase])?*/)
+;
+
+InstanceIndirectRefPhrase:
+	'in' parent=[OperationDefinitionBodyFunctionCallInRefsObjectsPhrase]
+;
+
+InstanceBuiltinValuePhrase:
+	InstanceBuiltinValueIntegerPhrase |
+	InstanceBuiltinValueStringPhrase
+;
+
+InstanceBuiltinValueIntegerPhrase:
+	{InstanceBuiltinValueIntegerPhrase} v=INT
+;
+
+InstanceBuiltinValueStringPhrase:
+	{InstanceBuiltinValueStringPhrase} v=STRING
+;

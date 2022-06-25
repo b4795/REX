@@ -1,0 +1,351 @@
+there_are booleans (boolean).
+there_are integers (integer).
+there_are strings (string).
+
+it_is_possible_to output an integer X.
+it_is_possible_to output a string X.
+it_is_possible_to output_a_new_line.
+
+it_is_possible_that a boolean B is_false.
+it_is_possible_that a boolean B is_true.
+it_is_possible_that an integer X is an integer Y.
+it_is_possible_that a string X is a string Y.
+
+it_is_possible_to read_input_from_user_and_store_it_in a integer I.
+it_is_possible_to read_input_from_user_and_store_it_in a string S.
+
+it_is_possible_that an integer X is_equal_to an integer Y is a boolean B.
+it_is_possible_that an integer X is_not_equal_to an integer Y is a boolean B.
+it_is_possible_that an integer X is_greater_than_or_equal_to an integer Y is a boolean B.
+it_is_possible_that an integer X is_greater_than an integer Y is a boolean B.
+it_is_possible_that an integer X is_less_than_or_equal_to an integer Y is a boolean B.
+it_is_possible_that an integer X is_less_than an integer Y is a boolean B.
+
+it_is_possible the_addition_of an integer A with an integer B is an integer X.
+it_is_possible the_difference_between an integer A and an integer B is an integer X.
+
+it_is_possible_that a string X is_equal_to a string Y is a boolean B.
+
+if require_press_enter_to_continue, then
+	output "Press ENTER to continue...",
+	there_is_one string S,
+	read_input_from_user_and_store_it_in S.
+
+if clear_the_screen, then
+	output_a_new_line,
+	output_a_new_line,
+	output_a_new_line,
+	output_a_new_line,
+	output_a_new_line,
+	output_a_new_line,
+	output_a_new_line,
+	output_a_new_line,
+	output_a_new_line.
+
+there_are banks (bank).
+
+there_are names (name).
+there_are first_names (first_name).
+a first_name is a string.
+a last_name is a string.
+there_are last_names (last_name).
+a name is_composed_by a first_name, and a last_name.
+
+if a name N1 is a name N2, then
+	there_is_one string fn,
+	there_is_one string ln,
+	fn is the first_name in N2,
+	ln is the last_name in N2,
+	the first_name in N1 is fn,
+	the last_name in N1 is ln.
+
+there_are company_names (company_name).
+a company_name is a string.
+
+there_are addresses (address).
+an address is a string.
+
+a bank has one company_name, and one address.
+
+there_are clients (client).
+there_are client_ids (client_id).
+a client_id is an integer.
+a client has a name.
+a client has a client_id.
+
+if output a client C, then
+	there_is_one name N,
+	N is the name in C,
+	output the first_name in N,
+	output " ",
+	output the last_name in N,
+	output " (id: ",
+	output the client_id in C,
+	output ")",
+	output_a_new_line.
+
+there_are accounts (account).
+there_are account_ids (account_id).
+an account_id is an integer.
+an account has an account_id.
+an account has a client_id.
+
+there_are amounts (amount).
+an amount is an integer.
+there_are amounts_available (amount_available).
+an amount_available is an amount.
+an account has an amount_available.
+
+if output an account A, then
+	output "account #",
+	output the account_id in A,
+	output " (client id: ",
+	output the client_id in A,
+	output ", amount available: ",
+	output the amount_available in A,
+	output ")",
+	output_a_new_line.
+
+a bank has clients, and accounts.
+
+it_is_possible_that an account A is_the_element_number an integer N on zero_or_more accounts As.
+it_is_possible_that an integer N is_the_number_of_elements_in zero_or_more accounts As.
+it_is_possible_that an client C is_the_element_number an integer N on zero_or_more clients Cs.
+it_is_possible_that an integer N is_the_number_of_elements_in zero_or_more clients Cs.
+
+it_is_possible_to add a client C to a bank B.
+it_is_possible_to add an account C to a bank B.
+it_is_possible_to generate a client_id I unique_to a bank B.
+it_is_possible_to generate an account_id I unique_to a bank B.
+
+if create a client C on a bank B, then
+	there_is_one name N,
+	there_is_one client_id I,
+	output "First name: ",
+	read_input_from_user_and_store_it_in the first_name in N,
+	output "Last name: ",
+	read_input_from_user_and_store_it_in the last_name in N,
+	the name in C is N,
+	generate I unique_to B,
+	the client_id in C is I,
+	add C to B.
+
+it_is_possible_that a client C is_the_client_with a client_id I on a bank B.
+
+if a client_id I is_valid_for a bank B is a boolean Y, then
+	there_is_one integer N,
+	N is_the_number_of_elements_in the clients in B,
+	if N is_greater_than_or_equal_to 1, then
+		I is_valid_for the clients in B numbers 1 to N is Y;
+	else
+		Y is_false.
+
+if a client_id I is_valid_for zero_or_more clients Cs numbers an integer A to an integer B is a boolean Y, then
+	if A is_greater_than B, then
+		Y is_false;
+	else
+		there_is_one client C,
+		C is_the_element_number A on Cs,
+		if I is_equal_to the client_id in C, then
+			Y is_true;
+		else
+			the_addition_of A with 1 is A,
+			I is_valid_for Cs numbers A to B is Y.
+
+if a client_id I is_not_valid_for a bank B is a boolean Y, then
+	if I is_valid_for B, then
+		Y is_false;
+	else
+		Y is_true.
+
+if create an account A on a bank B, then
+	there_is_one account_id I,
+	the amount_available in A is 0,
+	generate I unique_to B,
+	the account_id in A is I,
+	add A to B.
+
+it_is_possible_that an account A is_the_account_with an account_id I on a bank B.
+it_is_possible_that an account_id I is_valid_for a bank B is a boolean Y.
+
+if an account_id I is_not_valid_for a bank B is a boolean Y, then
+	if I is_valid_for B, then
+		Y is_false;
+	else
+		Y is_true.
+
+it_is_possible_that the_client_with a client_id I has_accounts_on a bank B is a boolean Y.
+
+it_is_possible_to remove_the_client_with a client_id I from a bank B.
+it_is_possible_to remove_the_account_with an account_id I from a bank B.
+
+if list_all_client_in a bank B, then
+	there_is_one integer N,
+	N is_the_number_of_elements_in the clients in B,
+	if N is_greater_than_or_equal_to 1, then
+		list_clients_number 1 to N on the clients in B.
+
+if list_clients_number an integer A to an integer B on zero_or_more clients Cs, then
+	if A is_less_than_or_equal_to B, then
+		there_is_one client C,
+		C is_the_element_number A on Cs,
+		output C,
+		the_addition_of A with 1 is A,
+		list_clients_number A to B on Cs.
+
+if list_all_accounts_in a bank B, then
+	there_is_one integer N,
+	N is_the_number_of_elements_in the accounts in B,
+	if N is_greater_than_or_equal_to 1, then
+		list_accounts_number 1 to N on the accounts in B.
+
+if list_accounts_number an integer A to an integer B on zero_or_more accounts ACCs, then
+	if A is_less_than_or_equal_to B, then
+		there_is_one account ACC,
+		ACC is_the_element_number A on ACCs,
+		output ACC,
+		the_addition_of A with 1 is A,
+		list_accounts_number A to B on ACCs.
+
+if show_welcome_message_for a bank B, then
+	output "Welcome to ",
+	output the company_name in B,
+	output "!",
+	output_a_new_line,
+	output_a_new_line,
+	output "If you don't find what you are looking for,",
+	output_a_new_line,
+	output "you can reach us at the following address:",
+	output_a_new_line,
+	output_a_new_line,
+	output "    ",
+	output the address in B,
+	output_a_new_line,
+	output_a_new_line.
+
+if launch_create_a_client_page_for a bank B, then
+	output "CREATE A NEW CLIENT",
+	output_a_new_line,
+	there_is_one client C,
+	create C on B,
+	output C.
+
+if launch_create_an_account_page_for a bank B, then
+	output "CREATE A NEW ACCOUNT",
+	output_a_new_line,
+	there_is_one client_id I,
+	output "Client id: ",
+	read_input_from_user_and_store_it_in I,
+	if I is_valid_for B, then
+		there_is_one account A,
+		create A on B,
+		the client_id in A is I,
+		output A;
+	else
+		output "That is not valid client id. Please try again.",
+		output_a_new_line.
+
+if launch_remove_a_client_page_for a bank B, then
+	output "REMOVE A CLIENT",
+	output_a_new_line,
+	there_is_one client_id I,
+	output "Client id: ",
+	read_input_from_user_and_store_it_in I,
+	if I is_not_valid_for B, then
+		output "That is not valid client id. Please try again.",
+		output_a_new_line;
+	else if the_client_with I has_accounts_on B, then
+		output "The client has accounts. Please remove them first.",
+		output_a_new_line;
+	else
+		remove_the_client_with I from B.
+
+if launch_remove_an_account_page_for a bank B, then
+	output "REMOVE AN ACCOUNT",
+	output_a_new_line,
+	there_is_one account_id I,
+	output "Account id: ",
+	read_input_from_user_and_store_it_in I,
+	if I is_not_valid_for B, then
+		output "That is not valid account id. Please try again.",
+		output_a_new_line;
+	else
+		there_is_one account C,
+		C is_the_account_with I on B,
+		if the amount_available in C is_not_equal_to 0, then
+			output "The account is not empty. Please empty it first.",
+			output_a_new_line;
+	else
+		remove_the_account_with I from B.
+
+if launch_main_menu_for a bank B, then
+	clear_the_screen,
+	show_welcome_message_for B,
+	output "1. List clients",
+	output_a_new_line,
+	output "2. List accounts",
+	output_a_new_line,
+	output "3. Create a client",
+	output_a_new_line,
+	output "4. Create an account",
+	output_a_new_line,
+	output "5. Remove a client",
+	output_a_new_line,
+	output "6. Remove an account",
+	output_a_new_line,
+	output "7. Deposit",
+	output_a_new_line,
+	output "8. Withdraw",
+	output_a_new_line,
+	output "9. Transfer",
+	output_a_new_line,
+	output "0. Exit",
+	output_a_new_line,
+	output_a_new_line,
+	output "What would you like to do? Enter an option: ",
+	there_is_one string O,
+	read_input_from_user_and_store_it_in O,
+	output_a_new_line,
+	output_a_new_line,
+	if O is_equal_to "1", then
+		output "LIST OF CLIENTS",
+		output_a_new_line,
+		list_all_client_in B,
+		require_press_enter_to_continue,
+		launch_main_menu_for B;
+	else if O is_equal_to "2", then
+		output "LIST OF ACCOUNTS",
+		output_a_new_line,
+		list_all_accounts_in B,
+		require_press_enter_to_continue,
+		launch_main_menu_for B;
+	else if O is_equal_to "3", then
+		launch_create_a_client_page_for B,
+		require_press_enter_to_continue,
+		launch_main_menu_for B;
+	else if O is_equal_to "4", then
+		launch_create_an_account_page_for B,
+		require_press_enter_to_continue,
+		launch_main_menu_for B;
+	else if O is_equal_to "5", then
+		launch_remove_a_client_page_for B,
+		require_press_enter_to_continue,
+		launch_main_menu_for B;
+	else if O is_equal_to "6", then
+		launch_remove_an_account_page_for B,
+		require_press_enter_to_continue,
+		launch_main_menu_for B;
+	else if O is_equal_to "0", then
+		output "LEAVING...",
+		output_a_new_line;
+	else
+		output "That option is not valid or it is not implemented. Please try again.",
+		output_a_new_line,
+		require_press_enter_to_continue,
+		launch_main_menu_for B.
+
+if main, then
+	there_is_one bank B,
+	the company_name in B is "XPTO Bank",
+	the address in B is "XPTO Bank, Street S, City C, Country C2",
+	launch_main_menu_for B.

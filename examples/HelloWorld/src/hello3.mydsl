@@ -1,0 +1,15 @@
+there_are strings (string).
+
+it_is_possible_to print a string S.
+it_is_possible_to start_a_new_line.
+it_is_possible_to read_input_from_user_and_store_it_in a string S.
+
+if launch_application, then
+  there_is_one string S,
+  print "Hey! What's your name?",
+  start_a_new_line,
+  read_input_from_user_and_store_it_in S,
+  print "Hello ",
+  print S,
+  print "! Welcome!",
+  start_a_new_line.

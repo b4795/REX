@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="myDsl" nsURI="http://www.xtext.org/example/mydsl/MyDsl" nsPrefix="myDsl">
+  <eClassifiers xsi:type="ecore:EClass" name="Model">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="stmt" upperBound="-1" eType="#//Stmt"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Stmt"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ExistenceStmt" eSuperTypes="#//Stmt"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ExistenceDefiniteStmt" eSuperTypes="#//ExistenceStmt">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="definite" eType="#//ExistenceDefinitePhrase"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ExistenceDefinitePhrase" eSuperTypes="#//ExistenceAnyPhrase"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ExistenceDefiniteRefPhrase">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ref" eType="#//ExistenceDefinitePhrase"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ExistenceDefiniteRefListPhrase" eSuperTypes="#//ExistenceSingularRefListPhrase #//ExistenceAnyRefListPhrase">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="elements" upperBound="-1"
+        eType="#//ExistenceDefiniteRefPhrase" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ExistenceIndefiniteStmt" eSuperTypes="#//ExistenceStmt">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="plural" eType="#//ExistencePluralIndefinitePhrase"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="singular" eType="#//ExistenceSingularIndefinitePhrase"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ExistenceSingularIndefinitePhrase" eSuperTypes="#//ExistenceAnyPhrase"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ExistencePluralIndefinitePhrase" eSuperTypes="#//ExistenceAnyPhrase"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ExistenceSingularIndefiniteRefPhrase"
+      eSuperTypes="#//ExistenceIndefiniteRefPhrase">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ref" eType="#//ExistenceSingularIndefinitePhrase"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ExistencePluralIndefiniteRefPhrase"
+      eSuperTypes="#//ExistenceIndefiniteRefPhrase">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ref" eType="#//ExistencePluralIndefinitePhrase"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ExistenceSingularIndefiniteRefListPhrase"
+      eSuperTypes="#//ExistenceSingularRefListPhrase #//ExistenceAnyRefListPhrase">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="elements" upperBound="-1"
+        eType="#//ExistenceSingularIndefiniteRefPhrase" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ExistencePluralIndefiniteRefListPhrase"
+      eSuperTypes="#//ExistenceAnyRefListPhrase">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="elements" upperBound="-1"
+        eType="#//ExistencePluralIndefiniteRefPhrase" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ExistenceSingularRefListPhrase"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ExistenceAnyRefListPhrase"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ExistenceIndefiniteRefPhrase"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ExistenceAnyPhrase">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="CompositionStmt" eSuperTypes="#//Stmt">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="parent" eType="#//ExistenceSingularRefListPhrase"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="children" eType="#//ExistenceAnyRefListPhrase"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="InheritanceStmt" eSuperTypes="#//Stmt">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="class" eType="#//ExistenceSingularRefListPhrase"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="superclass" eType="#//ExistenceSingularRefListPhrase"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="OperationStmt" eSuperTypes="#//Stmt"/>
+  <eClassifiers xsi:type="ecore:EClass" name="OperationDeclarationStmt" eSuperTypes="#//OperationStmt"/>
+  <eClassifiers xsi:type="ecore:EClass" name="OperationDeclarionHeaderStmt" eSuperTypes="#//OperationDeclarationStmt">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="parameters" upperBound="-1"
+        eType="#//OperationParameterPhrase" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="OperationParameterPhrase"/>
+  <eClassifiers xsi:type="ecore:EClass" name="OperationDefinitionStmt" eSuperTypes="#//OperationStmt">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="header" eType="#//OperationDeclarionHeaderStmt"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="body" eType="#//OperationDefinitionBodyStmts"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="OperationDefinitionBodyStmts">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="stmts" upperBound="-1"
+        eType="#//OperationDefinitionBodyStmt" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="OperationDefinitionBodyStmt"/>
+  <eClassifiers xsi:type="ecore:EClass" name="OperationDefinitionBodyUnconditionalStmt"
+      eSuperTypes="#//OperationDefinitionBodyStmt"/>
+  <eClassifiers xsi:type="ecore:EClass" name="OperationDefinitionBodyUnconditionalPhrase"
+      eSuperTypes="#//OperationDefinitionBodyUnconditionalStmt"/>
+  <eClassifiers xsi:type="ecore:EClass" name="OperationDefinitionBodyFunctionCallPhrase"
+      eSuperTypes="#//OperationDefinitionBodyUnconditionalPhrase">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="arguments" upperBound="-1"
+        eType="#//OperationDefinitionBodyFunctionCallArgumentsPhrase" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="OperationDefinitionBodyFunctionCallArgumentsPhrase"/>
+  <eClassifiers xsi:type="ecore:EClass" name="OperationDefinitionBodyFunctionCallInRefsRefPhrase"
+      eSuperTypes="#//OperationDefinitionBodyFunctionCallArgumentsPhrase">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ref" eType="#//OperationDefinitionBodyFunctionCallInRefsPhrase"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="OperationDefinitionBodyFunctionCallInRefsPhrase">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="OperationDefinitionBodyFunctionCallInRefsObjectsPhrase"
+      eSuperTypes="#//OperationDefinitionBodyFunctionCallInRefsPhrase"/>
+  <eClassifiers xsi:type="ecore:EClass" name="OperationDefinitionBodyVariableDeclarationPhrase"
+      eSuperTypes="#//OperationDefinitionBodyUnconditionalPhrase #//OperationDefinitionBodyFunctionCallInRefsObjectsPhrase">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="#//ExistenceSingularIndefinitePhrase"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="OperationDefinitionBodyConditionalStmt"
+      eSuperTypes="#//OperationDefinitionBodyStmt">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="condition" eType="#//OperationDefinitionBodyFunctionCallPhrase"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="thenBody" eType="#//OperationDefinitionBodyStmts"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="elseBody" eType="#//OperationDefinitionBodyStmts"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="OperationParameterVariableDeclarationPhrase"
+      eSuperTypes="#//OperationParameterPhrase #//OperationDefinitionBodyFunctionCallInRefsObjectsPhrase">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="#//ExistenceIndefiniteRefPhrase"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="OperationParameterConnectionPhrase"
+      eSuperTypes="#//OperationParameterPhrase #//OperationDefinitionBodyFunctionCallInRefsPhrase"/>
+  <eClassifiers xsi:type="ecore:EClass" name="OperationParameterConnectionBuiltinRefPhrase"
+      eSuperTypes="#//OperationDefinitionBodyFunctionCallArgumentsPhrase">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="InstanceRefPhrase" eSuperTypes="#//OperationDefinitionBodyFunctionCallArgumentsPhrase">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="f" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="class" eType="#//ExistenceAnyPhrase"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="InstanceDirectRefPhrase">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="value" eType="#//InstanceBuiltinValuePhrase"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="InstanceIndirectRefPhrase">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="parent" eType="#//OperationDefinitionBodyFunctionCallInRefsObjectsPhrase"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="InstanceBuiltinValuePhrase"/>
+  <eClassifiers xsi:type="ecore:EClass" name="InstanceBuiltinValueIntegerPhrase" eSuperTypes="#//InstanceBuiltinValuePhrase">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="v" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="InstanceBuiltinValueStringPhrase" eSuperTypes="#//InstanceBuiltinValuePhrase">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="v" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+</ecore:EPackage>
